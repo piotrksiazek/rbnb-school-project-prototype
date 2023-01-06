@@ -78,6 +78,19 @@
     margin-bottom: 25px;
 }
 
+.offer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
+    margin-bottom: 20px;
+}
+
+.offer-label {
+    width: 60%;
+    text-align: center;
+}
+
 .account-created-panel {
     display: flex;
     justify-content: center;
