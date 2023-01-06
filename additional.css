@@ -1,0 +1,94 @@
+.panel {
+    margin-top: 50px;
+}
+
+.horizontal-box {
+    display: flex;
+    justify-content: space-between;
+}
+
+.horizontal-box-2 {
+    margin-top: 20px;
+    display: flex;
+    justify-content: left;
+}
+
+.horizontal-box-2 input {
+    width: 11%;
+}
+
+.horizontal-box-2 .small-text-label {
+    margin-top: 15px;
+    margin-right: 30px;
+}
+
+.horizontal-box input {
+    width: 50%;
+}
+
+.horizontal-box .first {
+    margin-right: 2%;
+}
+
+.horizontal-box .second {
+    margin-left: 2%;
+}
+
+.options-grid {
+    margin-top: 10px;
+
+    display: grid;
+    grid-template-columns: 50% 50%;
+
+}
+
+
+.options-grid .horizontal-box input {
+    width: min-content;
+    justify-self: right;
+}
+
+
+.options-grid .horizontal-box {
+    width: 70%;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.options-grid .horizontal-box .small-text-label {
+    width: 50%;
+}
+
+.options-grid .horizontal-box .text-label {
+    margin-right: 15px;
+}
+
+.wrapper {
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.registration-panel {
+    width: 40%;
+}
+
+.registration-panel .registration-label {
+    margin-bottom: 25px;
+}
+
+.account-created-panel {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    width: 400px;
+    height: 20px;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    background-color: #bcc5cf;
+
+    padding: 30px;
+}
