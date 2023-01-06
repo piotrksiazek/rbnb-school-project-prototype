@@ -1,0 +1,145 @@
+/*
+    #00AFF0   niebieski
+    #27272B   czarny
+    #8A96A3   szary
+    #FFF      bialy
+*/
+/* body + main + nav + footer + button */
+
+body {
+
+    font-family: Verdana, sans-serif;
+    width: 100%;
+    height: 100vh;
+    margin: 0 auto;
+
+}
+
+main {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 740px;
+}
+
+nav {
+    background-color: #00AFF0;
+    width: 100%;
+    height: 80px;
+    font-size: 17px;
+    box-sizing: border-box;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+li {
+    display: inline;
+    height: 100%;
+    flex-grow: 1;
+}
+
+
+li a {
+    display: flex;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    border-right: 3px solid #00AFF0;
+}
+
+li:last-child a {
+    border-right: none;
+}
+
+li a:hover {
+    background-color: #4082ed;
+}
+
+
+
+footer {
+    height: 40px;
+    padding: 30px;
+    margin-top: 0;
+    background-color: #00AFF0;
+    bottom: 0;
+    color: #34373b;
+}
+
+
+h1.boxTitle
+{
+    margin-top: 70px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+h3.boxDescription
+{
+    text-align: center;
+}
+
+div.panel
+{
+    background-color: #BCC5CF;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    min-height: 300px;
+    padding: 30px;
+    width: 60%;
+/* background-image: url("image.jpg");
+background-size: cover;
+background-position: top;
+    height: 500px;
+*/
+}
+
+.standard-button {
+    align-items: center;
+    background-color: #00AFF0;
+    border: 2px solid #00AFF0;
+    border-radius: .90rem;
+
+    box-shadow: rgba(0, 0, 0, 0.05) 0 1px 3px 0;
+    box-sizing: border-box;
+
+    color: #fff;
+    cursor: pointer;
+    display: block;
+
+    font-size: 17px;
+    font-weight: 400;
+    justify-content: center;
+    line-height: 1.5;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 14px;
+    min-width: 350px;
+    text-decoration: none;
+    transition: all 200ms;
+}
+
+.standard-button:hover {
+    transform: translateY(1px);
+    background-color: #4082ed;
+    border-color: #4082ed;
+}
+
+.standard-button:active {
+    box-shadow: rgba(0, 0, 0, 0.05) 0 1px 3px 0;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.5);
+}
