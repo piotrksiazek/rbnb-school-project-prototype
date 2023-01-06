@@ -1,0 +1,155 @@
+.small-margin {
+    margin: 5px
+}
+
+.fill-all-space {
+    flex-grow: 1;
+}
+
+.vertical-space {
+    height: 150px;
+}
+
+.registration-panel {
+    width: 30%;
+    height: 70%;
+}
+
+input {
+    border: 1px solid #c4c4c4;
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 3px 5px;
+    width: 190px;
+    height: 30px;
+}
+
+.btn {
+    background-color: #00AFF0;
+    border: 2px solid #00AFF0;
+    border-radius: .90rem;
+
+    box-shadow: rgba(0, 0, 0, 0.05) 0 1px 3px 0;
+    box-sizing: border-box;
+
+    color: #fff;
+
+    cursor: pointer;
+
+    font-size: 17px;
+    font-weight: 400;
+    justify-content: space-between;
+    line-height: 1.5;
+    /* margin: 0px 0px; */
+
+    /* position: relative; */
+    text-decoration: none;
+    transition: all 200ms;
+    max-width: 100%;
+}
+
+select {
+    width: 100%;
+    border: none;
+    color: white;
+    background-color: white;
+    border-radius: 5px;
+    height: 30px;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.space-between {
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.five-pointed-star {
+    --star-color:orange;
+    margin:1em auto;
+    font-size:1em;
+    position: relative;
+    display: block;
+    width: 0px;
+    height: 0px;
+    border-right: 1em solid transparent;
+    border-bottom: 0.7em solid var(--star-color);
+    border-left: 1em solid transparent;
+    transform: rotate(35deg);
+   }
+   .five-pointed-star:before {
+    border-bottom: 0.8em solid var(--star-color);
+    border-left: 0.3em solid transparent;
+    border-right: 0.3em solid transparent;
+    position: absolute;
+    height: 0;
+    width: 0;
+    top: -0.45em;
+    left: -0.65em;
+    display: block;
+    content:"";
+    transform: rotate(-35deg);
+   }
+   .five-pointed-star:after {
+    position: absolute;
+    display: block;
+    top: 0.03em;
+    left: -1.05em;
+    width: 0;
+    height: 0;
+    border-right: 1em solid transparent;
+    border-bottom: 0.7em solid var(--star-color);
+    border-left: 1em solid transparent;
+    transform: rotate(-70deg);
+    content:"";
+   }
+
+.checked {
+    color: orange;
+}
+
+.right-panel {
+    width: 30%;
+}
+
+.left-panel {
+    width: 60%;
+}
+
+.half-width {
+    width: 50%;
+}
+
+.max-width {
+    width: 100%;
+}
+
+.big-picture {
+    width: 400px;
+    height: 400px;
+}
+
+.small-picture {
+    width: 100px;
+    height: 100px;
+}
+
+.black {
+    background-color: black;
+}
+
+.grey {
+    background-color: grey;
+}
+
+.yellow {
+    background-color: yellow;
+}
