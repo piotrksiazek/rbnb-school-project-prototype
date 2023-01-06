@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="./main.css" />
+    <link rel="stylesheet" href="review.css" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="description" content="Onlyhouse" />
+    <meta name="author" content="Kamil Filipek">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pozostaw ocenę</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#"> Strona główna </a></li>
+            <li><a href="#"> Możliwe panele </a></li>
+            <li><a href="#"> Zarejestruj się </a></li>
+            <li><a href="#"> Zaloguj </a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h1 class="boxTitle">Pozostaw ocenę</h1>
+
+
+        <div class="panel">
+            <h3 class="boxDescription">Kliknij na gwiazdki:</h3>
+            <div class="txt-center"> <!-- source: https://stackoverflow.com/questions/8118266/integrating-css-star-rating-into-an-html-form -->
+                <form>
+                    <div id="rating">
+                        <input id="star5" name="star" type="radio" value="5" class="radio-btn hide" />
+                        <label for="star5">☆</label>
+                        <input id="star4" name="star" type="radio" value="4" class="radio-btn hide" />
+                        <label for="star4">☆</label>
+                        <input id="star3" name="star" type="radio" value="3" class="radio-btn hide" />
+                        <label for="star3">☆</label>
+                        <input id="star2" name="star" type="radio" value="2" class="radio-btn hide" />
+                        <label for="star2">☆</label>
+                        <input id="star1" name="star" type="radio" value="1" class="radio-btn hide" />
+                        <label for="star1">☆</label>
+                        <div class="clear"></div>
+                    </div>
+                </form>
+            </div>
+            <form action="sendConfirmation.php" id="rating_boxTextarea" name="confirmationForm" method="post">
+                <textarea id="rating_confirmationText" class="text"name="confirmationText" placeholder="Komentarz..."></textarea>
+                <br />
+                <input class="standard-button" type="submit" value="Zgłoś">
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <span>2022 &copy MyOnlyHouse</span>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        // Check Radio-box
+        $(".rating input:radio").attr("checked", false);
+
+        $('.rating input').click(function () {
+            $(".rating span").removeClass('checked');
+            $(this).parent().addClass('checked');
+        });
+
+        $('input:radio').change(
+            function(){
+                var userRating = this.value;
+                alert(userRating);
+            });
+    });
+</script>
+</body>
+</html>

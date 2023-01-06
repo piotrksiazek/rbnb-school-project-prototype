@@ -1,0 +1,43 @@
+h3.offerTitle {
+    margin-bottom: 30px;
+}
+
+div#confirmationPanel {
+    height: 280px;
+    padding: 40px;
+    width: 60%;
+}
+
+div#rightSummaryBox
+{
+    border-left: black solid;
+    padding-left: 50px;
+}
+
+div#offerDetailTitles
+{
+    font-weight: bold;
+}
+
+div.panel div
+{
+    float: left;
+    margin-right: 50px
+}
+
+
+span.offerDetailValue {
+
+}
+
+input {
+    width: 200px;
+    padding: 8px 15px;
+    margin: 6px 0 8px;
+    display: inline-block;
+    border: 1px solid #8A96A3;
+    border-radius: 5px;
+    box-sizing: border-box;
+
+    font-size: 14px;
+}

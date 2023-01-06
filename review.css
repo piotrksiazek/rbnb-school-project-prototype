@@ -1,0 +1,66 @@
+form {
+    margin-top: -10px;
+}
+form textarea
+{
+    font-family: "Arial", Serif;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    height: 200px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    resize: none;
+
+}
+
+
+.txt-center {
+    text-align: center;
+}
+.hide {
+    display: none;
+}
+
+.clear {
+    float: none;
+    clear: both;
+}
+
+div#rating {
+    width: 170px;
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    text-align: center;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+}
+
+#rating > label {
+    position: relative;
+    cursor: pointer;
+    color: #000;
+    font-size: 28px;
+}
+
+#rating > label:hover,
+#rating > label:hover ~ label,
+#rating > input.radio-btn:checked ~ label {
+    color: transparent;
+}
+
+#rating > label:hover:before,
+#rating > label:hover ~ label:before,
+#rating > input.radio-btn:checked ~ label:before,
+#rating > input.radio-btn:checked ~ label:before {
+    content: "\2605";
+    position: absolute;
+    color: #FFD700;
+}
