@@ -63,7 +63,6 @@
 }
 
 .search-result{
-    height: 500px;
     margin: 0 30px 30px 30px;
     display: grid;
     grid-template-columns: 60% 35%;
