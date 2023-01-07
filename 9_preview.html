@@ -25,7 +25,7 @@
                     <h1>Dom w górach</h1>
                     <div class="flex-row">
                         <div class="flex-row half-width">
-                            <div class="big-picture black"></div>
+                            <div class="big-picture black" id="bigPicture"></div>
                         </div>
                         <div class="flex-column">
                             <div class="flex-row">
@@ -99,6 +99,16 @@
                     </div>
                     <div class="flex-column half-width">
                     </div>
+
+                    <h3>Komentarze</h3>
+                    <div class="flex-column comment">
+                        <h4>Jan Kowalski</h4>
+                        <div>Super mieszkanie, polecam, chociaz brudne.</div>
+                    </div>
+                    <div class="flex-column comment">
+                        <h4>Jakiś Inny</h4>
+                        <div>Pod kanapą znalazłem sens.</div>
+                    </div>
                 </div>
             </div>
             <div class="panel right-panel">
@@ -129,6 +139,17 @@
     <footer>
         <span>2022 &copy MyOnlyHouse</span>
     </footer>
+
+<script>
+    const bigPicture = document.getElementById("bigPicture");
+    const smallPictures = document.getElementsByClassName("small-picture");
+    for(let picture of smallPictures){
+        picture.addEventListener('click', () => {
+            const color = getComputedStyle(picture).backgroundColor;
+            bigPicture.style.backgroundColor = color;
+        })
+    }
+</script>
 
 </body>
 
