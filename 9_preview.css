@@ -153,3 +153,32 @@ select {
 .yellow {
     background-color: yellow;
 }
+
+.photos {
+    margin: 15px;
+    padding: 15px;
+}
+
+.small-input {
+    width: 40%;
+}
+
+.reminder-message {
+    margin: 10px;
+    padding: 15px;
+}
+
+.reminder-panel {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    width: 50%;
+    height: 20%;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    background-color: #bcc5cf;
+
+    padding: 30px;
+}

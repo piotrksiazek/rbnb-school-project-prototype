@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="general.css">
+    <link rel="stylesheet" href="additional.css">
+    <link rel="stylesheet" href="9_preview.css">
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a href="#"> Strona główna </a></li>
+            <li><a href="#"> Możliwe panele </a></li>
+            <li><a href="#"> Zarejestruj się </a></li>
+            <li><a href="#" id="last"> Zaloguj </a></li>
+        </ul>
+    </nav>
+
+    <main>
+      
+        <div class="panel">
+            <div class="small-text-label">Nazwa: </div>
+            <input type="text" name="firstname" placeholder="Wpisz nazwę obiektu">
+
+            <div class="small-text-label">Maksymalna cena za obiekt: </div>
+            <input class="first" type="text" name="firstname" placeholder="Cena za dobę od [PLN]">
+
+            
+            <div class="flex-row">
+                <div class="flex-column max-width">
+                    <div class="small-text-label">Cena za osobę: </div>
+                    <input type="text" name="firstname" placeholder="Cena za osobę [PLN]">
+                </div>
+                <div class="flex-column max-width">
+                    <div class="small-text-label">Maks. osób: </div>
+                    <input type="text" name="firstname" placeholder="Maksymalna liczba osób">
+                </div>
+            </div>
+            <div class="flex-row">
+                <div class="flex-column max-width">
+                    <div class="small-text-label">Ulica: </div>
+                    <input type="text" name="firstname" placeholder="Ulica">
+                </div>
+                <div class="flex-column max-width">
+                    <div class="small-text-label">Miasto: </div>
+                    <input type="text" name="firstname" placeholder="Miasto">
+                </div>
+            </div>
+            <div class="flex-row">
+                <div class="flex-column max-width">
+                    <div class="small-text-label">Numer domu: </div>
+                    <input type="text" name="firstname" placeholder="Numer domu">
+                </div>
+                <div class="flex-column max-width">
+                    <div class="small-text-label">Numer lokalu: </div>
+                    <input type="text" name="firstname" placeholder="Numer lokalu">
+                </div>
+            </div>
+            <div class="flex-row">
+                <div class="flex-column max-width">
+                    <div class="small-text-label">Liczba pięter: </div>
+                    <input type="text" name="firstname" placeholder="Liczba pięter">
+                </div>
+                <div class="flex-column max-width">
+                    <div class="small-text-label">Powierzchnia: </div>
+                    <input type="text" name="firstname" placeholder="Powierzchnia">
+                </div>
+            </div>
+
+            <div class="options-grid">
+                <div class="horizontal-box">
+                    <div class="small-text-label">Parking: </div>
+                    <input type="checkbox" checked="">
+                    <span class="checkmark"></span>
+                </div>
+
+                <div class="horizontal-box">
+                    <div class="small-text-label">Kuchnia: </div>
+                    <input type="checkbox" checked="">
+                    <span class="checkmark"></span>
+                </div>
+
+                <div class="horizontal-box">
+                    <div class="small-text-label">Zwierzęta: </div>
+                    <input type="checkbox" checked="">
+                    <span class="checkmark"></span>
+                </div>
+
+                <div class="horizontal-box">
+                    <div class="small-text-label">Telewizja: </div>
+                    <input type="checkbox" checked="">
+                    <span class="checkmark"></span>
+                </div>
+
+                <div class="horizontal-box">
+                    <div class="small-text-label">Internet: </div>
+                    <input type="checkbox" checked="">
+                    <span class="checkmark"></span>
+                </div>
+
+                <div class="horizontal-box">
+                    <div class="small-text-label">Łazienka prywatna: </div>
+                    <input type="checkbox" checked="">
+                    <span class="checkmark"></span>
+                </div>
+
+                <div class="horizontal-box">
+                    <div class="small-text-label">Balkon: </div>
+                    <input type="checkbox" checked="">
+                    <span class="checkmark"></span>
+                </div>
+
+                <div class="horizontal-box">
+                    <div class="small-text-label">Taras: </div>
+                    <input type="checkbox" checked="">
+                    <span class="checkmark"></span>
+                </div>
+            </div>
+            <div class="horizontal-box-2">
+                <div class="small-text-label">Zdjęcia: </div>
+            </div>
+            <button class="btn small-margin fill-all-space" role="button" id="photosButton">Dodaj zdjęcie</button>
+            <div class="flex-row" id="photos">
+            </div>
+        </div>
+
+        <div class="wrapper">
+            <button class="standard-button" role="button">Dodaj</button>
+        </div>
+    </main>
+
+    <footer>
+        <span>2022 &copy MyOnlyHouse</span>
+    </footer>
+
+</body>
+<script>
+    const getPhoto = () => {
+        const elem = document.createElement("div");
+        elem.classList.add("small-picture");
+        elem.classList.add("grey");
+        elem.classList.add("photos");
+        return elem;
+    }
+
+    const photos = document.getElementById("photos");
+    const photosButton = document.getElementById("photosButton");
+
+    photosButton.addEventListener('click', () => {
+        console.log("XD")
+        photos.appendChild(getPhoto());
+    })
+</script>
+</html>
