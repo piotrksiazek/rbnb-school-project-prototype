@@ -41,3 +41,14 @@ input {
 
     font-size: 14px;
 }
+
+
+.standard-button {
+    align-items: center;
+    font-weight: 400;
+    justify-content: center;
+    line-height: 1.3;
+    margin-left: 0;
+    margin-top: 14px;
+    min-width: 150px;
+}
