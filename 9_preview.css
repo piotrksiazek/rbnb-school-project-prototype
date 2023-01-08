@@ -38,7 +38,8 @@ input {
 
     font-size: 17px;
     font-weight: 400;
-    justify-content: space-between;
+    display: flex;
+    justify-content: center;
     line-height: 1.5;
     /* margin: 0px 0px; */
 
@@ -46,6 +47,10 @@ input {
     text-decoration: none;
     transition: all 200ms;
     max-width: 100%;
+}
+
+.quarter-width {
+    width: 25%;
 }
 
 select {
