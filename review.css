@@ -61,6 +61,6 @@ div#rating {
 #rating > input.radio-btn:checked ~ label:before,
 #rating > input.radio-btn:checked ~ label:before {
     content: "\2605";
-    position: absolute;
+    position: fixed;
     color: #FFD700;
 }
