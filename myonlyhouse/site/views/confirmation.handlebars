@@ -1,0 +1,40 @@
+<main>
+    <h1 class="boxTitle">Podsumowanie zamówienia</h1>
+
+
+    <div class="panel" id="confirmationPanel">
+        <div id="leftSummaryBox">
+            <h3 class="offerTitle">Przestronne mieszkanie nad Wisłą</h3>
+            <div id="offerDetailTitles">
+                Adres oferty: <br />
+                Cena za wynajem: <br />
+                Opłata serwisowa: <br /> <br />
+                <h3>Do zapłaty: </h3>
+            </div>
+            <div id="offerDetailValues">
+                <span id="offerAddress"> ul. Kozia 32/3, 31-123 Kraków </span>
+                <br />
+                <span id="offerPrice"> 412,42 zł</span>
+                <br />
+                <span id="offerServicePrice"> 12,13 zł</span>
+                <br /><br />
+                <span id="totalAmount"><h3> 424,55 zł</h3></span>
+            </div>
+        </div>
+        <div id="rightSummaryBox">
+            <h3 class="offerTitle">Informacje o płatności</h3>
+            Imię i nazwisko na karcie
+            <br />
+            <input class="first" type="text" name="name" placeholder="Jan Kowalski">
+            <br />
+            Numer karty
+            <br />
+            <input type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}"  maxlength="19" placeholder="0000 0000 0000 0000">
+            <br />
+            Kod CVV
+            <br />
+            <input class="first" type="text" name="cvv" placeholder="123">
+            <input class="standard-button" type="submit" value="Przejdź dalej" onclick="location.href='/confirmation_sent'">
+        </div>
+    </div>
+</main>

@@ -1,0 +1,128 @@
+<main>
+    <div class="flex-row">
+        <div class="panel left-panel">
+            <div class="flex-column">
+                <h1>Dom w górach</h1>
+                <div class="flex-row">
+                    <div class="flex-row half-width">
+                        <div class="big-picture black" id="bigPicture"></div>
+                    </div>
+                    <div class="flex-column">
+                        <div class="flex-row">
+                            <div class="small-picture grey"></div>
+                            <div class="small-picture yellow"></div>
+                            <div class="small-picture grey"></div>
+                            <div class="small-picture yellow"></div>
+                        </div>
+                        <div class="flex-row">
+                            <span class="five-pointed-star"></span>
+                            <span class="five-pointed-star"></span>
+                            <span class="five-pointed-star"></span>
+                            <span class="five-pointed-star"></span>
+                            <span class="five-pointed-star"></span>
+                        </div>
+                        <div>
+                            <div>
+                                <div class="options-grid">
+                                    <div class="horizontal-box">
+                                        <div class="small-text-label">Parking: </div>
+                                        <input type="checkbox" checked="">
+                                        <span class="checkmark"></span>
+                                    </div>
+
+                                    <div class="horizontal-box">
+                                        <div class="small-text-label">Zwierzęta: </div>
+                                        <input type="checkbox" checked="">
+                                        <span class="checkmark"></span>
+                                    </div>
+
+                                    <div class="horizontal-box">
+                                        <div class="small-text-label">Internet: </div>
+                                        <input type="checkbox" checked="">
+                                        <span class="checkmark"></span>
+                                    </div>
+
+                                    <div class="horizontal-box">
+                                        <div class="small-text-label">Balkon: </div>
+                                        <input type="checkbox" checked="">
+                                        <span class="checkmark"></span>
+                                    </div>
+
+                                    <div class="horizontal-box">
+                                        <div class="small-text-label">Cisza nocna: </div>
+                                        <input type="checkbox" checked="">
+                                        <span class="checkmark"></span>
+                                    </div>
+
+                                    <div class="horizontal-box">
+                                        <div class="small-text-label">Telewizja: </div>
+                                        <input type="checkbox" checked="">
+                                        <span class="checkmark"></span>
+                                    </div>
+
+                                    <div class="horizontal-box">
+                                        <div class="small-text-label">Łazienka: </div>
+                                        <input type="checkbox" checked="">
+                                        <span class="checkmark"></span>
+                                    </div>
+
+                                    <div class="horizontal-box">
+                                        <div class="small-text-label">Taras: </div>
+                                        <input type="checkbox" checked="">
+                                        <span class="checkmark"></span>
+                                    </div>
+                                </div>
+                                <h3>Ul. Okulickiego 4/20, Gdańsk, Pomorskie</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-column half-width">
+                </div>
+
+                <h3>Komentarze</h3>
+                <div class="flex-column comment">
+                    <h4>Jan Kowalski</h4>
+                    <div>Super mieszkanie, polecam, chociaz brudne.</div>
+                </div>
+                <div class="flex-column comment">
+                    <h4>Jakiś Inny</h4>
+                    <div>Pod kanapą znalazłem sens.</div>
+                </div>
+            </div>
+        </div>
+        <div class="panel right-panel">
+            <div class="flex-column">
+                <h1>426 zł noc</h1>
+                <div class="flex-row">
+                    <input class="small-margin half-width" type="date" />
+                    <input class="small-margin half-width" type="date" />
+                </div>
+                <h2>Goście</h2>
+                <select name="cars" id="cars" class="small-text-label small-margin fill-all-space">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+                <div class="vertical-space"></div>
+                <div class="flex-row space-between">
+                    <a class="btn small-margin fill-all-space" role="button" href="/contact">Kontakt</a>
+                    <a class="btn small-margin fill-all-space" role="button" href="/report">Zgłoś</a>
+                </div>
+                <a class="btn small-margin fill-all-space" role="button" href="/confirmation">Rezerwuj</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+    const bigPicture = document.getElementById("bigPicture");
+    const smallPictures = document.getElementsByClassName("small-picture");
+    for (let picture of smallPictures) {
+        picture.addEventListener('click', () => {
+            const color = getComputedStyle(picture).backgroundColor;
+            bigPicture.style.backgroundColor = color;
+        })
+    }
+</script>
