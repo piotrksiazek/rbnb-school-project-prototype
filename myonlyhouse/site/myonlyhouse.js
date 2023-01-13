@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const multiparty = require('multiparty');
 const cookieParser = require('cookie-parser');
 const expressSession = require('express-session');
+const database = require('./dbsqlite3');
 
 
 const handlers = require('./src/lib/handlers');
@@ -11,8 +12,6 @@ const handlers = require('./src/lib/handlers');
 const { credentials } = require('./src/config');
 
 const app = express();
-
-
 
 // handlebars configuration
 app.engine('handlebars', expressHandlebars.engine({ defaultLayout: 'main' }));

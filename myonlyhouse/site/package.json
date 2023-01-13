@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "myonlyhouse.js",
-  "scripts": { "test": "jest" },
+  "scripts": {
+    "test": "jest"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -12,7 +14,8 @@
     "express": "^4.18.2",
     "express-handlebars": "^6.0.6",
     "express-session": "^1.17.3",
-    "multiparty": "^4.2.3"
+    "multiparty": "^4.2.3",
+    "sqlite3": "^5.1.4"
   },
   "devDependencies": {
     "eslint": "^8.29.0",
