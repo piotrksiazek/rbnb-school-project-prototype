@@ -42,16 +42,12 @@ app.use(express.json());
 app.use(express.static('public'));
 
 // cookie-parser secret set
-// app.use(cookieParser(credentials.cookieSecret));
-
-const port = process.env.PORT || 3000;
-
-
-// session handling
+app.use(cookieParser(credentials.cookieSecret));
 
 // express-session init
 app.use(expressSession({
     // name: "session1",
+
     secret: "tajnehaslo1",
     resave: false,
     saveUninitialized: true,
@@ -71,12 +67,7 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.static(__dirname))
 app.use(cookieParser())
 
-
-// routers
-app.use('/account', accountRouter)
-app.use('/login', loginRouter)
-app.use('/confirmation', confirmationRouter)
-app.use('/logout', logoutRouter)
+const port = process.env.PORT || 3000;
 
 // main websites
 app.get('/', getHandlers.home);
