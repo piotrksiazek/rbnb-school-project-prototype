@@ -12,7 +12,8 @@ function init_database() {
     db.run(`CREATE TABLE IF NOT EXISTS Users (
         user_id INTEGER PRIMARY KEY AUTOINCREMENT,
         login TEXT UNIQUE NOT NULL,
-        password TEXT NOT NULL
+        password TEXT NOT NULL,
+        salt TEXT
         );`);
 
     db.run(`CREATE TABLE IF NOT EXISTS Offers (
@@ -41,6 +42,12 @@ function init_database() {
         link TEXT NOT NULL
         );`);
 
+    db.run(`CREATE TABLE IF NOT EXISTS Sessions (
+        session_id INTEGER PRIMARY KEY AUTOINCREMENT,
+        user_id_fk INTEGER,
+        cookie TEXT
+        );`);
+
     console.log("Initialized database");
 }
 
@@ -60,9 +67,26 @@ function delete_user(id) {
     });
 }
 
+function add_cookie(user_id, cookie) {
+    db.run(`INSERT OR IGNORE INTO Sessions VALUES (NULL, ?, ?)`, [user_id, cookie], (err) => {
+        if (err) {
+            console.log(err.message);
+        }
+    });
+}
+
 // callback(exists);
 function check_login(login, password, callback) {
     db.all(`SELECT * FROM Users WHERE login = ? and password = ?`, [login, password], (err, rows) => {
+        if (err) {
+            console.log(err.message);
+        }
+        callback(rows.length > 0);
+    });
+}
+
+function check_cookie(cookie, callback) {
+    db.all(`SELECT * FROM Users WHERE cookie = ?`, [cookie], (err, rows) => {
         if (err) {
             console.log(err.message);
         }
@@ -180,4 +204,4 @@ function get_offer_reservation_dates(offer_id, callback) {
 }
 
 module.exports = { init_database, add_user, check_login, delete_user, add_offer, get_offer, delete_offer, list_offers, add_reservation,
-    delete_reservation, get_user_offers, get_user_reservations, add_photo, delete_photo, get_photos, get_offer_reservation_dates };
+    delete_reservation, get_user_offers, get_user_reservations, add_photo, delete_photo, get_photos, get_offer_reservation_dates, add_cookie, check_cookie };

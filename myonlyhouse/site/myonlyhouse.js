@@ -4,12 +4,21 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const multiparty = require('multiparty');
 const cookieParser = require('cookie-parser');
-const session = require('express-session');
+const expressSession = require('express-session');
 const database = require('./dbsqlite3');
+const sqlite = require("better-sqlite3")
+const SqliteStore = require("better-sqlite3-session-store")(expressSession)
+const sessionDB = new sqlite("./session1.db")
+
+const accountRouter = require('./routes/account')  // session debug
+const loginRouter = require('./routes/login')
+const confirmationRouter = require('./routes/confirmation')
+const logoutRouter = require('./routes/logout')
 
 const getHandlers = require('./src/lib/get_handlers');
 
 const { credentials } = require('./src/config');
+const {Database} = require("sqlite3");
 
 const app = express();
 
@@ -33,18 +42,41 @@ app.use(express.json());
 app.use(express.static('public'));
 
 // cookie-parser secret set
-app.use(cookieParser(credentials.cookieSecret));
-
-// express-session init
-app.use(
-	session({
-		resave: false,
-		saveUninitialized: false,
-		secret: credentials.cookieSecret,
-	})
-);
+// app.use(cookieParser(credentials.cookieSecret));
 
 const port = process.env.PORT || 3000;
+
+
+// session handling
+
+// express-session init
+app.use(expressSession({
+    // name: "session1",
+    secret: "tajnehaslo1",
+    resave: false,
+    saveUninitialized: true,
+    store: new SqliteStore({
+        client: sessionDB,
+    }),
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24 // 1 day (1 day * 24h * 60min * 60sec
+        // secure: true
+    }
+}));
+
+// parsing incoming data
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
+//serving public file
+app.use(express.static(__dirname))
+app.use(cookieParser())
+
+
+// routers
+app.use('/account', accountRouter)
+app.use('/login', loginRouter)
+app.use('/confirmation', confirmationRouter)
+app.use('/logout', logoutRouter)
 
 // main websites
 app.get('/', getHandlers.home);
@@ -63,7 +95,7 @@ app.get('/accommodation_report_sent', getHandlers.accommodation_report_sent);
 app.get('/offer_deleted', getHandlers.offer_deleted);
 
 // login - registration
-app.get('/login', getHandlers.login);
+// app.get('/login', getHandlers.login);
 app.get('/registration', getHandlers.registration);
 app.get('/account_created ', getHandlers.account_created);
 
