@@ -1,15 +1,28 @@
 <main>
-    <div class="panel registration-panel" style="min-height: 120px;">
-        <div class="bold-text-label registration-label">Kontakt </div>
+    <form method='POST' action='/contact:id={{id}}'></form>
+	<div class='panel registration-panel' style='min-height: 120px;'>
+		<div class='bold-text-label registration-label'>Kontakt </div>
 
-        <div class="small-text-label">Twój adres Email: </div>
-        <input type="text" name="email" placeholder="przyklad@przyklad.pl">
+		<div class='small-text-label'>Twój adres Email: </div>
+		<input type='text' name='email' placeholder='przyklad@przyklad.pl' required/>
 
-        <div class="small-text-label">Treść wiadomości: </div>
-        <textarea id="contact-textarea" class="text" cols="86" rows ="60" name="confirmationText" placeholder="Dzień dobry, piszę z powodu..."></textarea>
-    </div>
+		<div class='small-text-label'>Treść wiadomości: </div>
+		<textarea
+			id='contact-textarea'
+			class='text'
+			cols='86'
+			rows='60'
+			name='confirmationText'
+			placeholder='Dzień dobry, piszę z powodu...'
+		></textarea>
+	</div>
 
-    <div class="wrapper">
-        <button class="standard-button" role="button" onclick="location.href='/contact_sent'">Wyślij</button>
-    </div>
+	<div class='wrapper'>
+		<button
+			class='standard-button'
+			role='button'
+			type='submit'
+		>Wyślij</button>
+	</div>
+    </form>
 </main>

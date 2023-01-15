@@ -24,37 +24,32 @@
 				<span id='totalAmount'><h3> {{total_price}} zł</h3></span>
 			</div>
 		</div>
-		<div id='rightSummaryBox'>
-			<h3 class='offerTitle'>Informacje o płatności</h3>
-			Imię i nazwisko na karcie
-			<br />
-			<input
-				class='first'
-				type='text'
-				name='name'
-				placeholder='Jan Kowalski'
-			/>
-			<br />
-			Numer karty
-			<br />
-			<input
-				type='tel'
-				inputmode='numeric'
-				pattern='[0-9\s]{13,19}'
-				maxlength='19'
-				placeholder='0000 0000 0000 0000'
-			/>
-			<br />
-			Kod CVV
-			<br />
-			<input class='first' type='text' name='cvv' placeholder='123' />
-			<br />
-			<input
-				id='confirmation-button'
-				type='submit'
-				value='Przejdź dalej'
-				onclick="location.href='confirmation_sent.html'"
-			/>
-		</div>
+
+		<form method='POST' action='/confirmation:id={{id}}'>
+			<div id='rightSummaryBox'>
+				<h3 class='offerTitle'>Informacje o płatności</h3>
+				Imię i nazwisko na karcie
+				<br />
+				<input class='first' type='text' name='name' placeholder='Jan Kowalski' required/>
+				<br />
+				Numer karty
+				<br />
+				<input
+					name='phone'
+					type='tel'
+					inputmode='numeric'
+					pattern='[0-9\s]{13,19}'
+					maxlength='19'
+					placeholder='0000 0000 0000 0000'
+					required
+				/>
+				<br />
+				Kod CVV
+				<br />
+				<input class='first' type='text' name='cvv' placeholder='123' required/>
+				<br />
+				<input id='confirmation-button' type='submit' value='Przejdź dalej' />
+			</div>
+		</form>
 	</div>
 </main>

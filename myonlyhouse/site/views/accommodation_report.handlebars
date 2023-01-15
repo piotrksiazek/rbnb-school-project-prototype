@@ -1,13 +1,29 @@
 <main>
-    <h1 class="boxTitle">Zgłoszenie problemu z mieszkaniem</h1>
-    <div id="accommodation-report-panel">
-        <h3 class="boxDescription">Podaj powód zgłoszenia</h3>
-        <form name="confirmationForm" method="post">
+	<h1 class='boxTitle'>Zgłoszenie problemu z mieszkaniem</h1>
+	<div id='accommodation-report-panel'>
+		<h3 class='boxDescription'>Podaj powód zgłoszenia</h3>
+		<form
+			name='confirmationForm'
+			method='POST'
+			action='/accommodation_report:id={{id}}'
+		>
 
-            <textarea id="accommodation-report-textarea" class="text" cols="86" rows ="20" name="confirmationText" placeholder="..."></textarea>
-            <br />
+			<textarea
+				id='accommodation-report-textarea'
+				class='text'
+				cols='86'
+				rows='20'
+				name='confirmationText'
+				placeholder='...'
+			></textarea>
+			<br />
 
-            <input class="standard-button" type="submit" value="Zgłoś" onclick="location.href='/accommodation_report_sent';">
-        </form>
-    </div>
+			<input
+				class='standard-button'
+				type='submit'
+				value='Zgłoś'
+				onclick="location.href='/accommodation_report_sent';"
+			/>
+		</form>
+	</div>
 </main>
