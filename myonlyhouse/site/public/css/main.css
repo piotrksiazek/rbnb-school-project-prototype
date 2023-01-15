@@ -6,13 +6,9 @@
 */
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    width: 100%;
-    height: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 0px;
-    margin-bottom: 0px;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
 
 }
 
@@ -21,69 +17,9 @@ main {
     margin-bottom: 100px;
     margin-left: auto;
     margin-right: auto;
-
     min-height: 500px;
 }
 
-nav {
-    /* padding: 0.3em; */
-    background-color: #00AFF0;
-    width: 100%;
-    height: 60px;
-    font-size: 17px;
-    box-sizing: border-box;
-
-}
-
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-}
-
-li {
-    display: inline;
-    height: 100%;
-    flex-grow: 1;
-}
-
-
-li a {
-    display: flex;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    height: 100%;
-    box-sizing: border-box;
-    padding: 10px;
-    justify-content: center;
-    align-items: center;
-    border-right: 3px solid #00AFF0;
-    border-radius: .90rem;
-}
-
-
-li a:hover {
-    background-color: #4082ed;
-}
-
-#last {
-    border-right: none;
-}
-
-
-footer {
-    padding-top: 30px;
-    padding-left: 30px;
-    min-height: 50px;
-    background-color: #00AFF0;
-
-    color: #34373b;
-}
 
 .standard-button {
     align-items: center;
@@ -124,17 +60,18 @@ footer {
 }
 
 .panel {
+    background-image: url("../img/image1.png");
+    background-size: cover;
+    background-position: top;
     min-height: 300px;
-    width: 80%;
+    width: 60%;
     margin-left: auto;
     margin-right: auto;
-
     background-color: #bcc5cf;
-
     padding: 30px;
 }
 
-input[type=text] {
+input[type=text], input[type=password] {
     width: 100%;
     padding: 8px 15px;
     margin: 8px 0;
@@ -202,10 +139,8 @@ input[type=text] {
 
 .options-grid {
     margin-top: 10px;
-
     display: grid;
     grid-template-columns: 50% 50%;
-
 }
 
 
@@ -216,9 +151,9 @@ input[type=text] {
 
 
 .options-grid .horizontal-box {
-    width: 70%;
     justify-content: space-between;
-    margin-top: 10px;
+    margin-top: 0px;
+    height: 1.5em;
 }
 
 .options-grid .horizontal-box .small-text-label {
@@ -236,48 +171,35 @@ input[type=text] {
     justify-content: center;
 }
 
+.registration-panel .registration-label {
+    margin-bottom: 25px;
+}
+
 .registration-panel {
-    width: 40%;
+    width: 30%;
+    background-image: url("../img/image1.png");
+    background-size: cover;
+    background-position: top;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-bottom: 5%;
 }
 
 .registration-panel .registration-label {
     margin-bottom: 25px;
 }
 
-.offer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 150px;
-    margin-bottom: 20px;
-}
 
-.offer-label {
-    width: 60%;
-    text-align: center;
-}
 
-.account-created-panel {
-    display: flex;
-    justify-content: center;
-    margin-top: 50px;
-    width: 400px;
-    height: 20px;
-
-    margin-left: auto;
-    margin-right: auto;
-
-    background-color: #bcc5cf;
-
-    padding: 30px;
-}
-
+/* ------------------------------------------------------------------------------------------------------------------------ */
+/* search_results */
 /* 1 */
 .sort {
-    width: 90%;
+    width: 70%;
+
     position: absolute;
-    left: 5%;
-    margin: 50px auto;
+    margin-top: 50px;
+    margin-left: 220px;
 }
 
 .sort-links{
@@ -308,18 +230,20 @@ input[type=text] {
 }
 
 .search-results-over {
-    background-color: #8A96A3;
-    width: 90%;
+    width: 70%;
     box-sizing: border-box;
     margin-top: 130px;
     padding-top: 30px;
     margin-bottom: 50px;
-    border-radius: .90rem;
 }
 
+
 .search-results-single {
+    background-color: #DFDFDF;
+    border-radius: .20rem;
     width: 100%;
     margin-top: 30px;
+    padding-top: 30px;
 }
 
 .search-results-single:first-of-type {
@@ -327,14 +251,6 @@ input[type=text] {
     margin-top: 0;
 }
 
-.search-results-single hr {
-    height: 40px;
-    width: 100%;
-    background-color: #00AFF0;
-    margin: 0;
-    padding: 0;
-    border: 0;
-}
 
 .search-result{
     margin: 0 30px 30px 30px;
@@ -348,26 +264,26 @@ input[type=text] {
 }
 
 .search-result img {
-    max-height: 100%;
-    max-width: 100%;
+    max-height: 90%;
+    max-width: 90%;
     object-fit: fill;
     margin: 0;
     padding: 0;
     border: 0;
-    border-radius: .90rem;
+    border-radius: .40rem;
 }
 
 .search-result-props {
-    align-self: center;
+    align-self: start;
     display: flex;
     flex-direction: column;
-    row-gap: 30px;
+    row-gap: 50px;
 }
 
 .search-result-props p {
     text-align: center;
-    height: 50px;
-    font-size: 1.4em;
+    height: 40px;
+    font-size: 1.2em;
     border-radius: .90rem;
     background-color: #00AFF0;
     border: 2px solid #00AFF0;
@@ -375,6 +291,7 @@ input[type=text] {
     box-sizing: border-box;
     color: #fff;
     line-height: 2;
+    margin: 0;
 }
 
 .paging {
@@ -546,7 +463,6 @@ input[type=text] {
 
 
 .options-grid .horizontal-box {
-    width: 70%;
     justify-content: space-between;
     margin-top: 10px;
 }
@@ -566,26 +482,8 @@ input[type=text] {
     justify-content: center;
 }
 
-.registration-panel {
-    width: 40%;
-}
 
-.registration-panel .registration-label {
-    margin-bottom: 25px;
-}
 
-.offer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 150px;
-    margin-bottom: 20px;
-}
-
-.offer-label {
-    width: 60%;
-    text-align: center;
-}
 
 .account-created-panel {
     display: flex;
@@ -610,14 +508,8 @@ input[type=text] {
     flex-grow: 1;
 }
 
-.vertical-space {
-    height: 150px;
-}
 
-.registration-panel {
-    width: 30%;
-    height: 70%;
-}
+
 
 input {
     border: 1px solid #c4c4c4;
@@ -681,9 +573,18 @@ select {
     align-items: stretch;
 }
 
+/* pojemnik na gwiazdki */
+body > main > div > div.panel.left-panel > div > div.flex-row > div.flex-column > div:nth-child(5) {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    width: 300px;
+}
+
+
 .five-pointed-star {
+    margin-left: auto; margin-right: auto;
     --star-color:orange;
-    margin:1em auto;
     font-size:1em;
     position: relative;
     display: block;
@@ -694,6 +595,7 @@ select {
     border-left: 1em solid transparent;
     transform: rotate(35deg);
    }
+
    .five-pointed-star:before {
     border-bottom: 0.8em solid var(--star-color);
     border-left: 0.3em solid transparent;
@@ -707,6 +609,7 @@ select {
     content:"";
     transform: rotate(-35deg);
    }
+
    .five-pointed-star:after {
     position: absolute;
     display: block;
@@ -726,11 +629,17 @@ select {
 }
 
 .right-panel {
-    width: 30%;
+    background-image: unset;
+    background-color: #DFDFDF;
+    margin-left: 4vw;
+    width: 20%;
 }
 
 .left-panel {
-    width: 60%;
+    background-image: unset;
+    background-color: #DFDFDF;
+    margin-right: 0;
+    width: 55%;
 }
 
 .half-width {
@@ -741,27 +650,51 @@ select {
     width: 100%;
 }
 
+
+
+/* ------------------------------------------------------------------------------------------------------------------------ */
+/* offer_preview */
 .big-picture {
-    width: 400px;
-    height: 400px;
+    border-radius: 4px;
+    width: 22vw;
+    height: 22vw;
+    background-image: url("../img/interior1.jpg");
+    background-size: cover;
 }
 
 .small-picture {
+    background-size: cover;
+    border-radius: 4px;
+    margin-right: 6px;
     width: 100px;
     height: 100px;
 }
 
-.black {
-    background-color: black;
+.small-picture:nth-of-type(1) {
+    background-image: url("../img/interior1.jpg");
 }
 
-.grey {
-    background-color: grey;
+.small-picture:nth-of-type(2) {
+    background-image: url("../img/interior2.jpg");
 }
 
-.yellow {
-    background-color: yellow;
+.small-picture:nth-of-type(3) {
+    background-image: url("../img/interior3.jpg");
 }
+
+.small-picture:nth-of-type(4) {
+    background-image: url("../img/interior4.jpg");
+}
+
+ div.flex-column  input[type="checkbox"] {
+    height: unset;
+}
+
+div.comment h4 {
+    margin-bottom: 0.5vw;
+    margin-top: 0;
+}
+
 
 .photos {
     margin: 15px;
@@ -794,7 +727,230 @@ select {
 
 .comment {
     border-style: solid;
-    border-width: 2px;
-    padding: 20px;
+    border-width: 1px;
+    padding: 10px;
     margin: 5px;
 }
+
+/* ------------------------------------------------------------------------------------------------------------------------ */
+/* contact */
+textarea#contact-textarea {
+    font-family: "Arial";
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    height: 300px;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    background-color: #f8f8f8;
+    font-size: 14px;
+    resize: none;
+    border: 1px solid #8A96A3;
+    border-radius: 5px;
+    margin-top: 7px;
+}
+
+
+
+
+/* ------------------------------------------------------------------------------------------------------------------------ */
+/* reservations */
+div.reservation-panel h1 {
+    text-align: center;
+}
+
+div.offer-label div.bold-text-label {
+    line-height: 40px;
+}
+
+div.offer-label:nth-of-type(2) div {
+    padding: 10px;
+}
+
+div.offer-label button.standard-button {
+    min-width: 200px;
+}
+
+
+body > main > div > div.offer > img {
+    height: 10vw;
+    width: 10vw;
+}
+
+div.reservation-panel, div.my_offers-panel {
+    background-image: unset;
+    background-color: #DFDFDF;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.offer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
+    margin-bottom: 20px;
+    width: 50vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.offer-label {
+    width: 500px;
+    text-align: center;
+}
+
+.account-created-panel {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    width: 400px;
+    height: 20px;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    background-color: #bcc5cf;
+
+    padding: 30px;
+}
+
+
+/* ------------------------------------------------------------------------------------------------------------------------ */
+/* review.html */
+div#review-panel{
+    background-image: url("../img/image3.png");
+    background-size: cover;
+    background-position: top;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    height: 500px;
+    padding: 30px;
+    width: 60%;
+    border-radius: 2px;
+}
+
+
+form#review-form {
+    margin-top: -10px;
+}
+
+form textarea#rating_confirmationText
+{
+    font-family: "Arial", Serif;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    height: 200px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    resize: none;
+
+}
+
+
+div.txt-center {
+    text-align: center;
+}
+
+div#rating .hide {
+    display: none;
+}
+
+div#rating .clear {
+    float: none;
+    clear: both;
+}
+
+div#rating {
+    width: 170px;
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    text-align: center;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+}
+
+div#rating > label {
+    position: relative;
+    cursor: pointer;
+    color: #000;
+    font-size: 28px;
+}
+
+div#rating > label:hover,
+div#rating > label:hover ~ label,
+div#rating > input.radio-btn:checked ~ label {
+    color: transparent;
+}
+
+div#rating > label:hover:before,
+div#rating > label:hover ~ label:before,
+div#rating > input.radio-btn:checked ~ label:before,
+div#rating > input.radio-btn:checked ~ label:before {
+    content: "\2605";
+    position: fixed;
+    color: #FFD700;
+}
+
+div#review-panel .standard-button {
+    align-items: center;
+    background-color: #00AFF0;
+    border: 2px solid #00AFF0;
+    border-radius: .90rem;
+    box-shadow: rgba(0, 0, 0, 0.05) 0 1px 3px 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    font-size: 17px;
+    font-weight: 400;
+    justify-content: center;
+    line-height: 1.5;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 14px;
+    min-width: 350px;
+    text-decoration: none;
+    transition: all 200ms;
+}
+
+div#review-panel .standard-button:hover {
+    transform: translateY(1px);
+    background-color: #4082ed;
+    border-color: #4082ed;
+}
+
+div#review-panel .standard-button:active {
+    box-shadow: rgba(0, 0, 0, 0.05) 0 1px 3px 0;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.5);
+}
+
+
+/* ------------------------------------------------------------------------------------------------------------------------ */
+/* my_offers */
+div.my_offers-panel  .bold-text-label {
+    line-height: 40px;
+}
+
+div.my_offers-panel h1 {
+    text-align: center;
+}
+
+div.offer-label button#standard-button {
+    min-width: 200px;
+}
+
+
+
+

@@ -1,11 +1,15 @@
+
 <main>
-    <div class="panel report">
-        <h1 class="bold-text-label">Zgłoszenie</h1>
-        <p class="small-text-label">Podaj powód zgłoszenia</p>
-        <textarea></textarea>
-        <div class="wrapper">
-            <a href="/report_sent.html"><button class="standard-button add-add-button" role="button">Prześlij
-                    zgłoszenie</button></a>
-        </div>
+    <h1 class="boxTitle">Zgłoszenie</h1>
+    <div id="report-panel">
+        <h3 class="boxDescription">Podaj powód zgłoszenia</h3>
+        <form name="confirmationForm" method="post">
+
+            <textarea id="report-textarea" class="text" cols="86" rows ="20" name="confirmationText" placeholder="..."></textarea>
+            <br />
+
+            <input class="standard-button" type="submit" value="Zgłoś" onclick="location.href='/report_sent';">
+        </form>
     </div>
 </main>
+
