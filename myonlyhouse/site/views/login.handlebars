@@ -1,17 +1,18 @@
 <main>
-    <div class="panel registration-panel">
+    <form action="/login" method="post" class="panel registration-panel">
         <div class="bold-text-label registration-label">Logowanie </div>
 
         <div class="small-text-label">Login: </div>
-        <input type="text" name="login" placeholder="login" >
+        <input type="text" name="login" id="login" placeholder="login">
 
         <div class="small-text-label">Hasło: </div>
-        <input type="password" name="haslo" placeholder="hasło">
+        <input type="password" name="haslo" id="haslo" placeholder="hasło">
 
         <a href="forgot_password.html">Nie pamiętasz hasła?</a>
-    </div>
 
     <div class="wrapper">
-        <a class="btn quarter-width" role="button" href="/">Zaloguj</a>
+<!--        <button class="btn quarter-width">Zaloguj</button>-->
+        <input type="submit" class="btn quarter-width" value="Zaloguj"/>
     </div>
+    </form>
 </main>
