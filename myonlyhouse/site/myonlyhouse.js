@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const multiparty = require('multiparty');
 const cookieParser = require('cookie-parser');
-const expressSession = require('express-session');
+const session = require('express-session');
 const database = require('./dbsqlite3');
 
 const getHandlers = require('./src/lib/get_handlers');
@@ -37,7 +37,7 @@ app.use(cookieParser(credentials.cookieSecret));
 
 // express-session init
 app.use(
-	expressSession({
+	session({
 		resave: false,
 		saveUninitialized: false,
 		secret: credentials.cookieSecret,
@@ -49,7 +49,7 @@ const port = process.env.PORT || 3000;
 // main websites
 app.get('/', getHandlers.home);
 app.get('/search_results', getHandlers.search_results);
-app.get('/offer_preview', getHandlers.offer_preview);
+app.get('/offer_preview/:id', getHandlers.offer_preview);
 app.get('/confirmation', getHandlers.confirmation);
 app.get('/confirmation_sent', getHandlers.confirmation_sent);
 app.get('/contact', getHandlers.contact);
@@ -73,6 +73,21 @@ app.post('/home', (req, res) => {
 		console.log('req body: ');
 		console.log(req.body);
 		// gdy się uda
+		// wyszukujemy w bazie danych wyniki mieszkań
+		// zawierają one dane do wyświetlenia: "search_results"
+
+		// przechowujemy je w sesji
+		req.session.offer = [
+			{
+				id: '14',
+				path: 'path1',
+				house_name: 'name1',
+				price: 'price1',
+				location: 'loc1',
+				review: 'rev1',
+			},
+		];
+
 		res.redirect('/search_results');
 	} catch (err) {
 		res.status(404).json({
@@ -81,8 +96,6 @@ app.post('/home', (req, res) => {
 		});
 	}
 });
-
-
 
 // ERRORS
 const notFound = (req, res) => {
@@ -97,7 +110,6 @@ const serverError = (err, req, res, next) => {
 app.use(notFound);
 // strona 500
 app.use(serverError);
-
 
 if (require.main === module) {
 	app.listen(port, () =>

@@ -1,3 +1,4 @@
+/* eslint-disable node/no-unsupported-features/es-syntax */
 exports.home = (req, res) => {
 	res.render('home');
 };
@@ -5,11 +6,20 @@ exports.home = (req, res) => {
 // app pages
 
 exports.offer_preview = (req, res) => {
+	console.log(req.body.id);
+	// pobranie danych z bazy na podstawie id
+
 	res.render('offer_preview');
 };
 
 exports.search_results = (req, res) => {
-	res.render('search_results');
+	console.log('search results session: ');
+	console.log(req.session.offer);
+	const offerArray = { ...req.session.offer };
+
+	req.session.offer = null;
+
+	res.render('search_results', { offer: offerArray });
 };
 
 exports.confirmation = (req, res) => {
@@ -69,4 +79,3 @@ exports.registration = (req, res) => {
 exports.account_created = (req, res) => {
 	res.render('account_created');
 };
-
