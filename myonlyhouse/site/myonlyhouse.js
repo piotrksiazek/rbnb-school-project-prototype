@@ -67,6 +67,13 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.static(__dirname))
 app.use(cookieParser())
 
+
+// routers
+app.use('/account', accountRouter)
+app.use('/login', loginRouter)
+app.use('/confirmation', confirmationRouter)
+app.use('/logout', logoutRouter)
+
 const port = process.env.PORT || 3000;
 
 // main websites
