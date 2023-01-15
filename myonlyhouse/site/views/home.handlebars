@@ -1,79 +1,81 @@
 <main>
 
     <div class="panel">
+        <form  method="POST" action="/home">
         <div class="small-text-label">Lokalizacja mieszkania: </div>
-        <input type="text" name="firstname" placeholder="Wpisz lokalizację pobytu">
+        <input type="text" name="lokalizacja" placeholder="Wpisz lokalizację pobytu" required>
 
         <div class="small-text-label">Cena za dobę: </div>
         <div class="horizontal-box">
-            <input class="first" type="text" name="firstname" placeholder="Cena za dobę od [PLN]">
-            <input class="second" type="text" name="firstname" placeholder="Do [PLN]">
+            <input class="first" type="text" name="cena_za_dobe_od" placeholder="Cena za dobę od [PLN] " required>
+            <input class="second" type="text" name="cena_za_dobe_do" placeholder="Do [PLN]" required>
         </div>
 
         <div class="small-text-label">Zameldowanie i wymeldowanie: </div>
         <div class="horizontal-box">
-            <input class="first" type="text" name="firstname" placeholder="Zameldowanie">
-            <input class="second" type="text" name="firstname" placeholder="Wymeldowanie">
+            <input class="first" type="text" name="zameldowanie" placeholder="Zameldowanie" required>
+            <input class="second" type="text" name="wymeldowanie" placeholder="Wymeldowanie" required>
         </div>
 
         <div class="options-grid">
             <div class="horizontal-box">
                 <div class="small-text-label">Parking: </div>
-                <input type="checkbox" checked="">
+                <input type="checkbox" name="parking" checked="">
                 <span class="checkmark"></span>
             </div>
 
             <div class="horizontal-box">
                 <div class="small-text-label">Zwierzęta: </div>
-                <input type="checkbox" checked="">
+                <input type="checkbox" name="zwierzeta" checked="">
                 <span class="checkmark"></span>
             </div>
 
             <div class="horizontal-box">
                 <div class="small-text-label">Internet: </div>
-                <input type="checkbox" checked="">
+                <input type="checkbox" name="internet" checked="">
                 <span class="checkmark"></span>
             </div>
 
             <div class="horizontal-box">
                 <div class="small-text-label">Balkon: </div>
-                <input type="checkbox" checked="">
+                <input type="checkbox" name="balkon" checked="">
                 <span class="checkmark"></span>
             </div>
 
             <div class="horizontal-box">
                 <div class="small-text-label">Cisza nocna: </div>
-                <input type="checkbox" checked="">
+                <input type="checkbox" name="cisza_nocna" checked="">
                 <span class="checkmark"></span>
             </div>
 
             <div class="horizontal-box">
                 <div class="small-text-label">Telewizja: </div>
-                <input type="checkbox" checked="">
+                <input type="checkbox" name="telewizja" checked="">
                 <span class="checkmark"></span>
             </div>
 
             <div class="horizontal-box">
                 <div class="small-text-label">Łazienka: </div>
-                <input type="checkbox" checked="">
+                <input type="checkbox" name="lazienka" checked="">
                 <span class="checkmark"></span>
             </div>
 
             <div class="horizontal-box">
                 <div class="small-text-label">Taras: </div>
-                <input type="checkbox" checked="">
+                <input type="checkbox" name="taras" checked="">
                 <span class="checkmark"></span>
             </div>
         </div>
         <div class="horizontal-box-2">
             <div class="small-text-label">Maksymalna odległość: </div>
-            <input class="second" type="text" name="firstname" placeholder="W [KM]">
+            <input class="second" type="text" name="maksymalna_odleglosc" placeholder="W [KM]" required>
         </div>
     </div>
 
     <div class="wrapper">
-        <button class="standard-button" role="button" onclick="location.href='/search_results';">Wyszukaj
+        <button class="standard-button" type="submit">Wyszukaj
             mieszkania</button>
     </div>
+    </form>
     
 </main>
