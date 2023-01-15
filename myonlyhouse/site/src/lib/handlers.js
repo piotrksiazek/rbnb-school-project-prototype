@@ -86,3 +86,8 @@ exports.serverError = (err, req, res, next) => {
     res.render('500');
 }
 /* eslint-enable no-unused-vars */
+
+
+exports.account = (req, res) => {
+    res.render('account');
+}

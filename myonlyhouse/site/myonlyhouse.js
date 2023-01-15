@@ -5,11 +5,20 @@ const multiparty = require('multiparty');
 const cookieParser = require('cookie-parser');
 const expressSession = require('express-session');
 const database = require('./dbsqlite3');
+const sqlite = require("better-sqlite3")
+const SqliteStore = require("better-sqlite3-session-store")(expressSession)
+const sessionDB = new sqlite("./session1.db")
+
+const accountRouter = require('./routes/account')  // session debug
+const loginRouter = require('./routes/login')
+const confirmationRouter = require('./routes/confirmation')
+const logoutRouter = require('./routes/logout')
 
 
 const handlers = require('./src/lib/handlers');
 
 const { credentials } = require('./src/config');
+const {Database} = require("sqlite3");
 
 const app = express();
 
@@ -22,19 +31,41 @@ app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 
 // cookie-parser secret set
-app.use(cookieParser(credentials.cookieSecret));
-
-// express-session init
-app.use(expressSession({
-    resave: false,
-    saveUninitialized: false,
-    secret: credentials.cookieSecret,
-}));
-
+// app.use(cookieParser(credentials.cookieSecret));
 
 const port = process.env.PORT || 3000;
 
 
+// session handling
+
+// express-session init
+app.use(expressSession({
+    // name: "session1",
+    secret: "tajnehaslo1",
+    resave: false,
+    saveUninitialized: true,
+    store: new SqliteStore({
+        client: sessionDB,
+    }),
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24 // 1 day (1 day * 24h * 60min * 60sec
+        // secure: true
+    }
+}));
+
+// parsing incoming data
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
+//serving public file
+app.use(express.static(__dirname))
+app.use(cookieParser())
+
+
+// routers
+app.use('/account', accountRouter)
+app.use('/login', loginRouter)
+app.use('/confirmation', confirmationRouter)
+app.use('/logout', logoutRouter)
 
 // main websites
 app.get('/', handlers.home);
@@ -43,7 +74,7 @@ app.get('/offer_preview', handlers.offer_preview);
 app.get('/confirmation', handlers.confirmation);
 app.get('/confirmation_sent', handlers.confirmation_sent);
 app.get('/contact', handlers.contact);
-app.get('contact_sent', handlers.contact_sent)
+app.get('/contact_sent', handlers.contact_sent)
 app.get('/report', handlers.report);
 app.get('/report_sent', handlers.report_sent);
 app.get('/reservations', handlers.reservations);
@@ -51,9 +82,11 @@ app.get('/accommodation_report', handlers.accommodation_report);
 app.get('/reservations', handlers.reservations);
 app.get('/accommodation_report_sent', handlers.accommodation_report_sent);
 app.get('/offer_deleted', handlers.offer_deleted);
+// app.get('/account', handlers.account)  // debug
+
 
 // login - registration
-app.get('/login', handlers.login);
+// app.get('/login', handlers.login);
 app.get('/registration', handlers.registration);
 app.get('/account_created ', handlers.account_created );
 

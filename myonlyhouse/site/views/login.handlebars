@@ -1,17 +1,20 @@
+<!-- zmiany wymagane do sesji ciastek itp -->
 <main>
-    <div class="panel registration-panel">
+    <form action="/login" method="post" class="panel registration-panel">
         <div class="bold-text-label registration-label">Logowanie </div>
 
         <div class="small-text-label">Login: </div>
-        <input type="text" name="login" placeholder="">
+        <input type="text" name="login" id="login" placeholder="">
 
         <div class="small-text-label">Hasło: </div>
-        <input type="text" name="haslo">
+        <input type="password" name="haslo" id="haslo">
 
         <a href="forgot_password.html">Zapomniałeś hasła?</a>
-    </div>
 
     <div class="wrapper">
-        <a class="btn quarter-width" role="button" href="/">Zaloguj</a>
+<!--        <button class="btn quarter-width">Zaloguj</button>-->
+        <input type="submit" class="btn quarter-width" value="Zaloguj"/>
     </div>
+    </form>
 </main>
+
