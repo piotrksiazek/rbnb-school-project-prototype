@@ -6,9 +6,9 @@ const multiparty = require('multiparty');
 const cookieParser = require('cookie-parser');
 const expressSession = require('express-session');
 const database = require('./dbsqlite3');
-const sqlite = require("better-sqlite3")
-const SqliteStore = require("better-sqlite3-session-store")(expressSession)
-const sessionDB = new sqlite("./session1.db")
+// const sqlite = require("better-sqlite3")
+// const SqliteStore = require("better-sqlite3-session-store")(expressSession)
+// const sessionDB = new sqlite("./session1.db")
 
 const accountRouter = require('./routes/account')  // session debug
 const loginRouter = require('./routes/login')
@@ -47,13 +47,12 @@ app.use(cookieParser(credentials.cookieSecret));
 // express-session init
 app.use(expressSession({
     // name: "session1",
-
     secret: "tajnehaslo1",
     resave: false,
     saveUninitialized: true,
-    store: new SqliteStore({
-        client: sessionDB,
-    }),
+    // store: new SqliteStore({
+		// 	client: sessionDB,
+    // }),
     cookie: {
         maxAge: 1000 * 60 * 60 * 24 // 1 day (1 day * 24h * 60min * 60sec
         // secure: true
