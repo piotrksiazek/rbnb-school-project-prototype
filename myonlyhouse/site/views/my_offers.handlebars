@@ -2,32 +2,22 @@
 
     <div class="panel my_offers-panel">
         <h1> Twoje oferty</h1>
+
+        {{#each offer}}
         <div class="offer">
-            <img src="../img/interior4.jpg" alt="">
+            <img src="{{this.interior_1}}" alt="">
             <div class="offer-label">
-                <div class="bold-text-label">Apartament na Dziennej</div>
-                <div class="small-text-label">ul. Dzienna 3, Rzeszów</div>
-                <div class="small-text-label">+48 121 123 123</div>
+                <div class="bold-text-label">{{this.name}}</div>
+                <div class="small-text-label"{{this.address}}</div>
+                <div class="small-text-label">{{this.phone_number}}</div>
             </div>
             <div class="offer-label">
                 <button class="standard-button" style="min-width: 200px;" role="button"
                             onclick="location.href='offer_deleted.html'">Usuń ofertę</button>
             </div>
         </div>
+        {{/each}}
 
-        <div class="offer">
-            <img src="../img/interior3.jpg" alt="">
-            <div class="offer-label">
-                <div class="bold-text-label">Pokój na Pradze</div>
-                <div class="small-text-label">ul. Rzeszowska 51, Warszawa</div>
-                <div class="small-text-label">+ 48 824 123 123</div>
-            </div>
-            <div class="offer-label">
-                <button class="standard-button" style="min-width: 200px;" role="button"
-                        onclick="location.href='offer_deleted.html'">Usuń ofertę
-                </button>
-            </div>
-        </div>
     </div>
 </main>
 
