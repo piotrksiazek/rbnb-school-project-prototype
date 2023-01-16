@@ -35,8 +35,8 @@ exports.offer_preview = (req, res) => {
 			comment: 'comment2',
 		},
 	];
-
-	res.render('offer_preview', { offerData, comments });
+	const takenStars = 5 - offerData.stars;
+	res.render('offer_preview', { offerData, comments, takenStars });
 };
 
 exports.search_results = (req, res) => {

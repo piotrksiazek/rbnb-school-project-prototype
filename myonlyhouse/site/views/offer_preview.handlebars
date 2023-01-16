@@ -76,7 +76,9 @@
                             {{#times offerData.stars}}
                                 <span class="five-pointed-star"></span>
                             {{/times}}
-                            
+                            {{#times takenStars}}
+                                <span class="five-pointed-star-dark"></span>
+                            {{/times}}                            
                         </div>
                     </div>
                 </div>
@@ -94,26 +96,27 @@
         </div>
         <div class="panel right-panel">
             <div class="flex-column">
-                <h1>{{offerData.price}}</h1>
-                <div class="flex-row">
-                    <input class="small-margin half-width" type="date" />
-                    <input class="small-margin half-width" type="date" />
-                </div>
-                <h2>Goście</h2>
-                <select name="cars" id="cars" class="small-text-label small-margin fill-all-space">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                </select>
-                <br />
-                <br />
-
-                <div class="flex-row space-between">
-                    <a class="btn small-margin fill-all-space" role="button" href="/contact">Kontakt</a>
-                    <a class="btn small-margin fill-all-space" role="button" href="/report">Zgłoś</a>
-                </div>
-                <a class="btn small-margin fill-all-space" role="button" href="/confirmation">Rezerwuj</a>
+                <h1>{{offerData.price}} zł</h1>
+                <form  method="POST" action="/offer_preview">
+                    <div class="flex-row">
+                        <input class="small-margin half-width" name="start-date" type="date" />
+                        <input class="small-margin half-width" name="end-date" type="date" />
+                    </div>
+                    <h2>Goście</h2>
+                    <select name="cars" name="guests-count" id="cars" class="small-text-label small-margin fill-all-space">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                    <br />
+                    <br />
+                    <div class="flex-row space-between">
+                        <a class="btn small-margin fill-all-space" role="button" href="/contact">Kontakt</a>
+                        <a class="btn small-margin fill-all-space" role="button" href="/report">Zgłoś</a>
+                    </div>
+                    <a class="btn small-margin fill-all-space" type="submit" role="button" href="/confirmation">Rezerwuj</a>
+                </form>
             </div>
         </div>
     </div>

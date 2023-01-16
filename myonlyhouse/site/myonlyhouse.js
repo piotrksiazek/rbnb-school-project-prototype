@@ -7,9 +7,6 @@ const cookieParser = require('cookie-parser');
 const expressSession = require('express-session');
 
 const database = require('./dbsqlite3');
-// const sqlite = require("better-sqlite3")
-// const SqliteStore = require("better-sqlite3-session-store")(expressSession)
-// const sessionDB = new sqlite("./session1.db")
 
 const accountRouter = require('./routes/account'); // session debug
 const loginRouter = require('./routes/login');
@@ -94,6 +91,8 @@ app.get('/accommodation_report', getHandlers.accommodation_report);
 app.get('/reservations', getHandlers.reservations);
 app.get('/accommodation_report_sent', getHandlers.accommodation_report_sent);
 app.get('/offer_deleted', getHandlers.offer_deleted);
+
+// add paths
 // app.get('/password_reminder', handlers.password_reminder);
 // app.get('/password_reminder_sent', handlers.password_reminder_sent);
 // app.get('/offer_added', handlers.offer_added);
@@ -134,6 +133,20 @@ app.post('/home', (req, res) => {
 				review: 'rev2',
 			},
 		];
+
+		res.redirect('/search_results');
+	} catch (err) {
+		res.status(404).json({
+			status: 'fail',
+			message: err,
+		});
+	}
+});
+
+app.post('/offer_preview', (req, res) => {
+	try {
+		console.log('req body: ');
+		console.log(req.body);
 
 		res.redirect('/search_results');
 	} catch (err) {
