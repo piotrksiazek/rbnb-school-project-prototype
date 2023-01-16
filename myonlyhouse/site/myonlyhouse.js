@@ -26,7 +26,7 @@ app.set('view engine', 'handlebars');
 app.engine(
 	'handlebars',
 	expressHandlebars.engine({
-		defaultLayout: 'main',
+		defaultLayout: 'unlogged',
 		layoutsDir: `${__dirname}/views/layouts`,
 		partialsDir: `${__dirname}/views/partials`,
 		// eslint-disable-next-line global-require
@@ -69,13 +69,32 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname));
 app.use(cookieParser());
 
+// header swap middleware
+const checkForHeader = function (req, res, next) {
+	if (req.session.user_id) {
+		app.engine(
+			'handlebars',
+			expressHandlebars.engine({
+				defaultLayout: 'loggedIn',
+			})
+		);
+	} else {
+		app.engine(
+			'handlebars',
+			expressHandlebars.engine({
+				defaultLayout: 'unlogged',
+			})
+		);
+	}
+	next();
+};
+app.use(checkForHeader);
+
 // routers
 app.use('/account', accountRouter);
 app.use('/login', loginRouter);
 app.use('/confirmation', confirmationRouter);
 app.use('/logout', logoutRouter);
-
-const port = process.env.PORT || 3000;
 
 // main websites
 app.get('/', getHandlers.home);
@@ -88,7 +107,6 @@ app.get('/report', getHandlers.report);
 app.get('/report_sent', getHandlers.report_sent);
 app.get('/reservations', getHandlers.reservations);
 app.get('/accommodation_report', getHandlers.accommodation_report);
-app.get('/reservations', getHandlers.reservations);
 app.get('/accommodation_report_sent', getHandlers.accommodation_report_sent);
 app.get('/offer_deleted', getHandlers.offer_deleted);
 
@@ -118,6 +136,8 @@ app.use(notFound); // strona 404
 app.use(serverError); // strona 500
 
 // SERVER
+const port = process.env.PORT || 3000;
+
 if (require.main === module) {
 	app.listen(port, () =>
 		console.log(
