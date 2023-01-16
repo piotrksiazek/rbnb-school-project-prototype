@@ -90,6 +90,10 @@ app.get('/accommodation_report', getHandlers.accommodation_report);
 app.get('/reservations', getHandlers.reservations);
 app.get('/accommodation_report_sent', getHandlers.accommodation_report_sent);
 app.get('/offer_deleted', getHandlers.offer_deleted);
+app.get('/password_reminder', handlers.password_reminder);
+app.get('/password_reminder_sent', handlers.password_reminder_sent);
+app.get('/offer_added', handlers.offer_added);
+app.get('/add_offer', handlers.add_offer);
 
 // login - registration
 // app.get('/login', getHandlers.login);
