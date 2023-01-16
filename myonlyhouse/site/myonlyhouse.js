@@ -5,20 +5,21 @@ const morgan = require('morgan');
 const multiparty = require('multiparty');
 const cookieParser = require('cookie-parser');
 const expressSession = require('express-session');
+
 const database = require('./dbsqlite3');
 // const sqlite = require("better-sqlite3")
 // const SqliteStore = require("better-sqlite3-session-store")(expressSession)
 // const sessionDB = new sqlite("./session1.db")
 
-const accountRouter = require('./routes/account')  // session debug
-const loginRouter = require('./routes/login')
-const confirmationRouter = require('./routes/confirmation')
-const logoutRouter = require('./routes/logout')
+const accountRouter = require('./routes/account'); // session debug
+const loginRouter = require('./routes/login');
+const confirmationRouter = require('./routes/confirmation');
+const logoutRouter = require('./routes/logout');
 
 const getHandlers = require('./src/lib/get_handlers');
 
 const { credentials } = require('./src/config');
-const {Database} = require("sqlite3");
+const { Database } = require('sqlite3');
 
 const app = express();
 
@@ -30,6 +31,8 @@ app.engine(
 		defaultLayout: 'main',
 		layoutsDir: `${__dirname}/views/layouts`,
 		partialsDir: `${__dirname}/views/partials`,
+		// eslint-disable-next-line global-require
+		helpers: require('./handlebars_helpers'),
 	})
 );
 
@@ -45,33 +48,34 @@ app.use(express.static('public'));
 app.use(cookieParser(credentials.cookieSecret));
 
 // express-session init
-app.use(expressSession({
-    // name: "session1",
-    secret: "tajnehaslo1",
-    resave: false,
-    saveUninitialized: true,
-    // store: new SqliteStore({
+app.use(
+	expressSession({
+		// name: "session1",
+		secret: 'tajnehaslo1',
+		resave: false,
+		saveUninitialized: true,
+		// store: new SqliteStore({
 		// 	client: sessionDB,
-    // }),
-    cookie: {
-        maxAge: 1000 * 60 * 60 * 24 // 1 day (1 day * 24h * 60min * 60sec
-        // secure: true
-    }
-}));
+		// }),
+		cookie: {
+			maxAge: 1000 * 60 * 60 * 24, // 1 day (1 day * 24h * 60min * 60sec
+			// secure: true
+		},
+	})
+);
 
 // parsing incoming data
-app.use(express.json())
-app.use(express.urlencoded({extended: true}))
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 //serving public file
-app.use(express.static(__dirname))
-app.use(cookieParser())
-
+app.use(express.static(__dirname));
+app.use(cookieParser());
 
 // routers
-app.use('/account', accountRouter)
-app.use('/login', loginRouter)
-app.use('/confirmation', confirmationRouter)
-app.use('/logout', logoutRouter)
+app.use('/account', accountRouter);
+app.use('/login', loginRouter);
+app.use('/confirmation', confirmationRouter);
+app.use('/logout', logoutRouter);
 
 const port = process.env.PORT || 3000;
 
@@ -101,19 +105,29 @@ app.post('/home', (req, res) => {
 	try {
 		console.log('req body: ');
 		console.log(req.body);
+
 		// gdy się uda
-		// wyszukujemy w bazie danych wyniki mieszkań
-		// zawierają one dane do wyświetlenia: "search_results"
+		// wyszukujemy w bazie danych wyniki mieszkań na podstawie danych z request body
+		// zawierają one dane do wyświetlenia: "search_results". Przechowywujemy je w sesji
 
 		// przechowujemy je w sesji
 		req.session.offer = [
 			{
-				id: '14',
+				// data for displaying single search_results row
+				id: '1',
 				path: 'path1',
 				house_name: 'name1',
 				price: 'price1',
 				location: 'loc1',
 				review: 'rev1',
+			},
+			{
+				id: '2',
+				path: 'path2',
+				house_name: 'name2',
+				price: 'price2',
+				location: 'loc2',
+				review: 'rev2',
 			},
 		];
 

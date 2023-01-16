@@ -6,10 +6,37 @@ exports.home = (req, res) => {
 // app pages
 
 exports.offer_preview = (req, res) => {
-	console.log(req.body.id);
-	// pobranie danych z bazy na podstawie id
+	console.log(`offer id: ${req.params.id}`);
 
-	res.render('offer_preview');
+	// pobranie danych o ofercie z bazy na podstawie id
+	// ...
+	const offerData = {
+		short_description: 'desc',
+		address: 'add 1',
+		price: '111',
+		parking: '1',
+		zwierzeta: '1',
+		internet: '1',
+		balkon: '1',
+		cisza_nocna: '1',
+		telewizja: '1',
+		lazienka: '1',
+		taras: '1',
+		stars: '4', // liczba całkowita
+	};
+
+	const comments = [
+		{
+			nick: 'nick1',
+			comment: 'comment1',
+		},
+		{
+			nick: 'nick2',
+			comment: 'comment2',
+		},
+	];
+
+	res.render('offer_preview', { offerData, comments });
 };
 
 exports.search_results = (req, res) => {
