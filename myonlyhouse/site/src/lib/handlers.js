@@ -73,6 +73,22 @@ exports.account_created = (req, res) => {
 	res.render('account_created');
 };
 
+exports.offer_added = (req, res) => {
+    res.render('offer_added');
+}
+
+exports.password_reminder = (req, res) => {
+    res.render('password_reminder');
+}
+
+exports.password_reminder_sent = (req, res) => {
+    res.render('password_reminder_sent');
+}
+
+exports.add_offer = (req, res) => {
+    res.render('add_offer');
+}
+
 // errors
 
 exports.notFound = (req, res) => {
@@ -88,3 +104,4 @@ exports.serverError = (err, req, res, next) => {
 exports.account = (req, res) => {
 	res.render('account');
 };
+
