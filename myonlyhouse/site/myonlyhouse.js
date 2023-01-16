@@ -14,6 +14,7 @@ const confirmationRouter = require('./routes/confirmation');
 const logoutRouter = require('./routes/logout');
 
 const getHandlers = require('./src/lib/get_handlers');
+const postHandlers = require('./src/lib/post_handlers');
 
 const { credentials } = require('./src/config');
 const { Database } = require('sqlite3');
@@ -80,7 +81,6 @@ const port = process.env.PORT || 3000;
 app.get('/', getHandlers.home);
 app.get('/search_results', getHandlers.search_results);
 app.get('/offer_preview/:id', getHandlers.offer_preview);
-app.get('/confirmation', getHandlers.confirmation);
 app.get('/confirmation_sent', getHandlers.confirmation_sent);
 app.get('/contact', getHandlers.contact);
 app.get('contact_sent', getHandlers.contact_sent);
@@ -92,70 +92,18 @@ app.get('/reservations', getHandlers.reservations);
 app.get('/accommodation_report_sent', getHandlers.accommodation_report_sent);
 app.get('/offer_deleted', getHandlers.offer_deleted);
 
-// add paths
 // app.get('/password_reminder', handlers.password_reminder);
 // app.get('/password_reminder_sent', handlers.password_reminder_sent);
 // app.get('/offer_added', handlers.offer_added);
 // app.get('/add_offer', handlers.add_offer);
 
-// login - registration
-// app.get('/login', getHandlers.login);
 app.get('/registration', getHandlers.registration);
 app.get('/account_created ', getHandlers.account_created);
 
-// process forms
-app.post('/home', (req, res) => {
-	try {
-		console.log('req body: ');
-		console.log(req.body);
-
-		// gdy się uda
-		// wyszukujemy w bazie danych wyniki mieszkań na podstawie danych z request body
-		// zawierają one dane do wyświetlenia: "search_results". Przechowywujemy je w sesji
-
-		// przechowujemy je w sesji
-		req.session.offer = [
-			{
-				// data for displaying single search_results row
-				id: '1',
-				path: 'path1',
-				house_name: 'name1',
-				price: 'price1',
-				location: 'loc1',
-				review: 'rev1',
-			},
-			{
-				id: '2',
-				path: 'path2',
-				house_name: 'name2',
-				price: 'price2',
-				location: 'loc2',
-				review: 'rev2',
-			},
-		];
-
-		res.redirect('/search_results');
-	} catch (err) {
-		res.status(404).json({
-			status: 'fail',
-			message: err,
-		});
-	}
-});
-
-app.post('/offer_preview', (req, res) => {
-	try {
-		console.log('req body: ');
-		console.log(req.body);
-
-		res.redirect('/search_results');
-	} catch (err) {
-		res.status(404).json({
-			status: 'fail',
-			message: err,
-		});
-	}
-});
+// main websites forms
+app.post('/home', postHandlers.home);
+app.post('/offer_preview', postHandlers.offer_preview);
+app.post('/confirmation', postHandlers.confirmation);
 
 // ERRORS
 const notFound = (req, res) => {
@@ -166,11 +114,10 @@ const serverError = (err, req, res, next) => {
 	res.render('500');
 };
 
-// strona 404
-app.use(notFound);
-// strona 500
-app.use(serverError);
+app.use(notFound); // strona 404
+app.use(serverError); // strona 500
 
+// SERVER
 if (require.main === module) {
 	app.listen(port, () =>
 		console.log(

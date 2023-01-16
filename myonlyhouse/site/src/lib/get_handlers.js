@@ -35,6 +35,9 @@ exports.offer_preview = (req, res) => {
 			comment: 'comment2',
 		},
 	];
+
+	req.session.offerData = offerData;
+
 	const takenStars = 5 - offerData.stars;
 	res.render('offer_preview', { offerData, comments, takenStars });
 };
@@ -49,9 +52,6 @@ exports.search_results = (req, res) => {
 	res.render('search_results', { offer: offerArray });
 };
 
-exports.confirmation = (req, res) => {
-	res.render('confirmation');
-};
 
 exports.confirmation_sent = (req, res) => {
 	res.render('confirmation_sent');
@@ -91,12 +91,6 @@ exports.my_offers = (req, res) => {
 
 exports.offer_deleted = (req, res) => {
 	res.render('offer_deleted');
-};
-
-// login - registration
-
-exports.login = (req, res) => {
-	res.render('login');
 };
 
 exports.registration = (req, res) => {

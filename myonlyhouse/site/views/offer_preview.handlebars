@@ -99,11 +99,11 @@
                 <h1>{{offerData.price}} zł</h1>
                 <form  method="POST" action="/offer_preview">
                     <div class="flex-row">
-                        <input class="small-margin half-width" name="start-date" type="date" />
-                        <input class="small-margin half-width" name="end-date" type="date" />
+                        <input class="small-margin half-width" name="startDate" type="date" />
+                        <input class="small-margin half-width" name="endDate" type="date" />
                     </div>
                     <h2>Goście</h2>
-                    <select name="cars" name="guests-count" id="cars" class="small-text-label small-margin fill-all-space">
+                    <select name="guests" name="guests-count" id="cars" class="small-text-label small-margin fill-all-space">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -115,7 +115,8 @@
                         <a class="btn small-margin fill-all-space" role="button" href="/contact">Kontakt</a>
                         <a class="btn small-margin fill-all-space" role="button" href="/report">Zgłoś</a>
                     </div>
-                    <a class="btn small-margin fill-all-space" type="submit" role="button" href="/confirmation">Rezerwuj</a>
+                    <button class="btn small-margin fill-all-space" type="submit" role="button">Rezerwuj</button>
+
                 </form>
             </div>
         </div>

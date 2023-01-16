@@ -3,7 +3,7 @@
 
 	<div id='confirmation-panel'>
 		<div id='leftSummaryBox'>
-			<h3 class='offerTitle'>{{short_description}}</h3>
+			<h3 class='offerTitle'>{{ offerDataArray.short_description }}</h3>
 			<div id='offerDetailTitles'>
 				Adres oferty:
 				<br />
@@ -15,17 +15,17 @@
 				<h3>Do zapłaty: </h3>
 			</div>
 			<div id='offerDetailValues'>
-				<span id='offerAddress'>{{address}}</span>
+				<span id='offerAddress'>{{ offerDataArray.address }}</span>
 				<br />
-				<span id='offerPrice'> {{price}} zł</span>
+				<span id='offerPrice'> {{ price }} zł</span>
 				<br />
-				<span id='offerServicePrice'> {{service_price}} zł</span>
+				<span id='offerServicePrice'> {{ servicePrice }} zł</span>
 				<br /><br />
-				<span id='totalAmount'><h3> {{total_price}} zł</h3></span>
+				<span id='totalAmount'><h3> {{ totalPrice }} zł</h3></span>
 			</div>
 		</div>
 
-		<form method='POST' action='/confirmation:id={{id}}'>
+		<form method='POST' action='/confirmation'>
 			<div id='rightSummaryBox'>
 				<h3 class='offerTitle'>Informacje o płatności</h3>
 				Imię i nazwisko na karcie
