@@ -179,6 +179,17 @@ function get_photos(offer_id, callback) {
     });
 }
 
+function get_photos_no_callback(offer_id) {
+	return new Promise((resolve, reject) => {
+		db.serialize(() => {
+			db.all("SELECT link FROM Photos NATURAL JOIN Offers WHERE offer_id = ?", offer_id, (err, rows) => {
+				if (err) reject(err);
+				resolve(rows);
+			});
+		});
+	});
+};
+
 // callback(start_date, end_date) for each reservation date
 function get_offer_reservation_dates(offer_id, callback) {
     db.each(`SELECT * FROM Reservations NATURAL JOIN Offers WHERE offer_id = ?`, [offer_id], (err, row) => {
@@ -190,4 +201,5 @@ function get_offer_reservation_dates(offer_id, callback) {
 }
 
 module.exports = { init_database, add_user, check_login, delete_user, add_offer, get_offer, delete_offer, list_offers, add_reservation,
-    delete_reservation, get_user_offers, get_user_reservations, add_photo, delete_photo, get_photos, get_offer_reservation_dates, get_newest_offer_id_for_user };
+    delete_reservation, get_user_offers, get_user_reservations, add_photo, delete_photo, get_photos, get_offer_reservation_dates, get_newest_offer_id_for_user,
+    get_photos_no_callback };
