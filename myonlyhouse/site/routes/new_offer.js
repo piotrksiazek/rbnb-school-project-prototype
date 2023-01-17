@@ -3,6 +3,13 @@ const router = express.Router()
 const db = require('../dbsqlite3')
 const uploadsFolderName = 'uploads'
 
+router.get('/', async (req, res) => {
+    res.statusCode = 200;
+    db.add_offer(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0);
+    db.get_newest_offer_id_for_user(1, (id) => req.session.current_new_offer_id = id);
+    res.render("add_offer");
+});
+
 router.post('/', async (req, res) => {
     try {
         if(!req.files) {

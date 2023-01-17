@@ -7,12 +7,6 @@ const cookieParser = require('cookie-parser');
 const expressSession = require('express-session');
 
 const database = require('./dbsqlite3');
-
-const accountRouter = require('./routes/account'); // session debug
-const loginRouter = require('./routes/login');
-const confirmationRouter = require('./routes/confirmation');
-const logoutRouter = require('./routes/logout');
-const database = require('./dbsqlite3');
 const fileUpload = require('express-fileupload');
 // const sqlite = require("better-sqlite3")
 // const SqliteStore = require("better-sqlite3-session-store")(expressSession)
@@ -22,7 +16,7 @@ const accountRouter = require('./routes/account')  // session debug
 const loginRouter = require('./routes/login')
 const confirmationRouter = require('./routes/confirmation')
 const logoutRouter = require('./routes/logout')
-const uploadImageRouter = require('./routes/upload_image')
+const newOfferRouter = require('./routes/new_offer')
 
 const getHandlers = require('./src/lib/get_handlers');
 const postHandlers = require('./src/lib/post_handlers');
@@ -109,7 +103,7 @@ app.use('/account', accountRouter)
 app.use('/login', loginRouter)
 app.use('/confirmation', confirmationRouter)
 app.use('/logout', logoutRouter)
-app.use('/upload_image', uploadImageRouter)
+app.use('/new_offer', newOfferRouter)
 
 // main websites
 app.get('/', getHandlers.home);

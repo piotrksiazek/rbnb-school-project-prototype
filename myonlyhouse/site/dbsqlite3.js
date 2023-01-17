@@ -71,8 +71,8 @@ function check_login(login, password, callback) {
     });
 }
 
-function add_offer(user_id, price, parking, internet, curfew, toilet, animals, balcony, tv, tarrace) {
-    db.run(`INSERT INTO Offers VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, [user_id, price, parking, internet, curfew, toilet, animals, balcony, tv, tarrace], (err) => {
+function add_offer(user_id, price, parking, internet, curfew, toilet, animals, balcony, tv, tarrace, finished) {
+    db.run(`INSERT INTO Offers VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, [user_id, price, parking, internet, curfew, toilet, animals, balcony, tv, tarrace, finished], (err) => {
         if (err) {
             console.log(err.message);
         }
@@ -86,6 +86,15 @@ function get_offer(id, callback) {
             console.log(err.message);
         }
         callback(row.user_id, row.price, row.parking, row.internet, row.curfew, row.toilet, row.animals, row.balcony, row.tv, row.tarrace);
+    });
+}
+
+function get_newest_offer_id_for_user(userId, callback) {
+    db.each(`SELECT MAX(offer_id) as id FROM Offers WHERE user_id = ?`, [userId], (err, row) => {
+        if (err) {
+            console.log(err.message);
+        }
+        callback(row.id);
     });
 }
 
@@ -181,4 +190,4 @@ function get_offer_reservation_dates(offer_id, callback) {
 }
 
 module.exports = { init_database, add_user, check_login, delete_user, add_offer, get_offer, delete_offer, list_offers, add_reservation,
-    delete_reservation, get_user_offers, get_user_reservations, add_photo, delete_photo, get_photos, get_offer_reservation_dates };
+    delete_reservation, get_user_offers, get_user_reservations, add_photo, delete_photo, get_photos, get_offer_reservation_dates, get_newest_offer_id_for_user };
