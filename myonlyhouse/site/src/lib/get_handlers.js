@@ -77,6 +77,10 @@ exports.reservations = (req, res) => {
 	res.render('reservations');
 };
 
+exports.add_ofer = (req, res) => {
+	res.render('add_offer');
+};
+
 exports.accommodation_report = (req, res) => {
 	res.render('accommodation_report');
 };

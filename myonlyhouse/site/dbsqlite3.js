@@ -26,7 +26,8 @@ function init_database() {
         animals INTEGER NOT NULL,
         balcony INTEGER NOT NULL,
         tv INTEGER NOT NULL,
-        tarrace INTEGER NOT NULL
+        tarrace INTEGER NOT NULL,
+        finished INTEGER DEFAULT 0 NOT NULL
         );`);
 
     db.run(`CREATE TABLE IF NOT EXISTS Reservations (

@@ -1,0 +1,116 @@
+<main>
+        <div class="panel">
+            <div class="small-text-label">Nazwa: </div>
+            <input type="text" name="firstname" placeholder="Wpisz nazwę obiektu">
+
+            <div class="small-text-label">Maksymalna cena za obiekt: </div>
+            <input class="first" type="text" name="firstname" placeholder="Cena za dobę od [PLN]">
+
+            
+            <div class="flex-row">
+                <div class="flex-column max-width">
+                    <div class="small-text-label">Cena za osobę: </div>
+                    <input type="text" name="firstname" placeholder="Cena za osobę [PLN]">
+                </div>
+                <div class="flex-column max-width">
+                    <div class="small-text-label">Maks. osób: </div>
+                    <input type="text" name="firstname" placeholder="Maksymalna liczba osób">
+                </div>
+            </div>
+            <div class="flex-row">
+                <div class="flex-column max-width">
+                    <div class="small-text-label">Ulica: </div>
+                    <input type="text" name="firstname" placeholder="Ulica">
+                </div>
+                <div class="flex-column max-width">
+                    <div class="small-text-label">Miasto: </div>
+                    <input type="text" name="firstname" placeholder="Miasto">
+                </div>
+            </div>
+            <div class="flex-row">
+                <div class="flex-column max-width">
+                    <div class="small-text-label">Numer domu: </div>
+                    <input type="text" name="firstname" placeholder="Numer domu">
+                </div>
+                <div class="flex-column max-width">
+                    <div class="small-text-label">Numer lokalu: </div>
+                    <input type="text" name="firstname" placeholder="Numer lokalu">
+                </div>
+            </div>
+            <div class="flex-row">
+                <div class="flex-column max-width">
+                    <div class="small-text-label">Liczba pięter: </div>
+                    <input type="text" name="firstname" placeholder="Liczba pięter">
+                </div>
+                <div class="flex-column max-width">
+                    <div class="small-text-label">Powierzchnia: </div>
+                    <input type="text" name="firstname" placeholder="Powierzchnia">
+                </div>
+            </div>
+
+            <div class="options-grid">
+                <div class="horizontal-box">
+                    <div class="small-text-label">Parking: </div>
+                    <input type="checkbox" checked="">
+                    <span class="checkmark"></span>
+                </div>
+
+                <div class="horizontal-box">
+                    <div class="small-text-label">Kuchnia: </div>
+                    <input type="checkbox" checked="">
+                    <span class="checkmark"></span>
+                </div>
+
+                <div class="horizontal-box">
+                    <div class="small-text-label">Zwierzęta: </div>
+                    <input type="checkbox" checked="">
+                    <span class="checkmark"></span>
+                </div>
+
+                <div class="horizontal-box">
+                    <div class="small-text-label">Telewizja: </div>
+                    <input type="checkbox" checked="">
+                    <span class="checkmark"></span>
+                </div>
+
+                <div class="horizontal-box">
+                    <div class="small-text-label">Internet: </div>
+                    <input type="checkbox" checked="">
+                    <span class="checkmark"></span>
+                </div>
+
+                <div class="horizontal-box">
+                    <div class="small-text-label">Łazienka prywatna: </div>
+                    <input type="checkbox" checked="">
+                    <span class="checkmark"></span>
+                </div>
+
+                <div class="horizontal-box">
+                    <div class="small-text-label">Balkon: </div>
+                    <input type="checkbox" checked="">
+                    <span class="checkmark"></span>
+                </div>
+
+                <div class="horizontal-box">
+                    <div class="small-text-label">Taras: </div>
+                    <input type="checkbox" checked="">
+                    <span class="checkmark"></span>
+                </div>
+            </div>
+            <div class="horizontal-box-2">
+                <div class="small-text-label">Zdjęcia: </div>
+            </div>
+            <button class="btn small-margin fill-all-space" role="button" id="photosButton">Dodaj zdjęcie</button>
+            <div class="flex-row" id="photos">
+            </div>
+            <form action="/upload_image" method="POST" enctype="multipart/form-data">
+                <input type="file" name="image" />
+                <button type="submit">Upload</button>
+            </form>
+
+        </div>
+
+        <div class="wrapper">
+            <a class="btn quarter-width" role="button" href="offer_added.html">Dodaj</a>
+        </div>
+    </main>

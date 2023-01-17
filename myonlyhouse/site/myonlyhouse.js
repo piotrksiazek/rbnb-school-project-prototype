@@ -12,6 +12,17 @@ const accountRouter = require('./routes/account'); // session debug
 const loginRouter = require('./routes/login');
 const confirmationRouter = require('./routes/confirmation');
 const logoutRouter = require('./routes/logout');
+const database = require('./dbsqlite3');
+const fileUpload = require('express-fileupload');
+// const sqlite = require("better-sqlite3")
+// const SqliteStore = require("better-sqlite3-session-store")(expressSession)
+// const sessionDB = new sqlite("./session1.db")
+
+const accountRouter = require('./routes/account')  // session debug
+const loginRouter = require('./routes/login')
+const confirmationRouter = require('./routes/confirmation')
+const logoutRouter = require('./routes/logout')
+const uploadImageRouter = require('./routes/upload_image')
 
 const getHandlers = require('./src/lib/get_handlers');
 const postHandlers = require('./src/lib/post_handlers');
@@ -66,8 +77,11 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 //serving public file
-app.use(express.static(__dirname));
-app.use(cookieParser());
+app.use(express.static(__dirname))
+app.use(cookieParser())
+app.use(fileUpload({
+    createParentPath: true
+}));
 
 // header swap middleware
 const checkForHeader = function (req, res, next) {
@@ -91,10 +105,11 @@ const checkForHeader = function (req, res, next) {
 app.use(checkForHeader);
 
 // routers
-app.use('/account', accountRouter);
-app.use('/login', loginRouter);
-app.use('/confirmation', confirmationRouter);
-app.use('/logout', logoutRouter);
+app.use('/account', accountRouter)
+app.use('/login', loginRouter)
+app.use('/confirmation', confirmationRouter)
+app.use('/logout', logoutRouter)
+app.use('/upload_image', uploadImageRouter)
 
 // main websites
 app.get('/', getHandlers.home);
@@ -109,6 +124,7 @@ app.get('/reservations', getHandlers.reservations);
 app.get('/accommodation_report', getHandlers.accommodation_report);
 app.get('/accommodation_report_sent', getHandlers.accommodation_report_sent);
 app.get('/offer_deleted', getHandlers.offer_deleted);
+app.get('/add_offer', getHandlers.add_ofer);
 
 // app.get('/password_reminder', handlers.password_reminder);
 // app.get('/password_reminder_sent', handlers.password_reminder_sent);
