@@ -12,7 +12,10 @@ function init_database() {
     db.run(`CREATE TABLE IF NOT EXISTS Users (
         user_id INTEGER PRIMARY KEY AUTOINCREMENT,
         login TEXT UNIQUE NOT NULL,
-        password TEXT NOT NULL
+        password TEXT NOT NULL,
+        phone_number TEXT,
+        first_name TEXT,
+        surname TEXT
         );`);
 
     db.run(`CREATE TABLE IF NOT EXISTS Offers (
@@ -45,8 +48,8 @@ function init_database() {
     console.log("Initialized database");
 }
 
-function add_user(login, password) {
-    db.run(`INSERT OR IGNORE INTO Users VALUES (NULL, ?, ?)`, [login, password], (err) => {
+function add_user(login, password, phone_number, first_name, surname) {
+    db.run(`INSERT OR IGNORE INTO Users VALUES (NULL, ?, ?, ?, ?, ?)`, [login, password, phone_number, first_name, surname], (err) => {
         if (err) {
             console.log(err.message);
         }

@@ -12,10 +12,11 @@ const fileUpload = require('express-fileupload');
 // const SqliteStore = require("better-sqlite3-session-store")(expressSession)
 // const sessionDB = new sqlite("./session1.db")
 
-const accountRouter = require('./routes/account')  // session debug
+const accountRouter = require('./routes/account')
 const loginRouter = require('./routes/login')
 const confirmationRouter = require('./routes/confirmation')
 const logoutRouter = require('./routes/logout')
+const registrationRouter = require("./routes/registration")
 const newOfferRouter = require('./routes/new_offer')
 
 const getHandlers = require('./src/lib/get_handlers');
@@ -99,11 +100,13 @@ const checkForHeader = function (req, res, next) {
 app.use(checkForHeader);
 
 // routers
-app.use('/account', accountRouter)
-app.use('/login', loginRouter)
-app.use('/confirmation', confirmationRouter)
-app.use('/logout', logoutRouter)
+app.use('/account', accountRouter);
+app.use('/login', loginRouter);
+app.use('/confirmation', confirmationRouter);
+app.use('/logout', logoutRouter);
+app.use('/registration', registrationRouter);
 app.use('/new_offer', newOfferRouter)
+
 
 // main websites
 app.get('/', getHandlers.home);
