@@ -9,6 +9,10 @@ router.get('/', async (req, res) => {
     res.render("add_offer");
 });
 
+router.post('/accept', async (req, res) => {
+    
+});
+
 router.post('/', async (req, res) => {
     try {
         if(!req.files) {
@@ -19,15 +23,15 @@ router.post('/', async (req, res) => {
         } else {
             let image = req.files.image;
             
-            //Use the mv() method to place the file in the upload directory (i.e. "uploads")
             image.mv(`./${uploadsFolderName}/` + image.name);
 
             db.get_newest_offer_id_for_user(1, (id) => {
                 db.add_photo(id, `/${uploadsFolderName}/${image.name}`);
 
-                db.get_photos_synchronous(id) 
+                db.get_photos_no_callback(id) 
                 .then((results) => {
-                console.log(results);
+                console.log(results)
+                res.render("add_offer", {links: results});
                 });
             })
 
@@ -37,7 +41,7 @@ router.post('/', async (req, res) => {
 
             // console.log(photos);
 
-            res.render("add_offer");
+            // res.render("add_offer");
             // //send response
             // res.send({
             //     status: true,

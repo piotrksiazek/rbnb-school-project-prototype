@@ -993,5 +993,21 @@ div.offer-label button#standard-button {
 }
 
 
+.images-container {
+    width: 80%;
+    margin: auto;
+}
 
+.image {
+    width: 150px;
+    height: 150px;
+    border: solid 1px white;
+}
 
+.file-upload {
+    display: none;
+}
+
+.required-input {
+    color: red;
+}
