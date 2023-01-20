@@ -1,116 +1,226 @@
 <main>
         <div class="panel">
             <div class="small-text-label">Nazwa: </div>
-            <input type="text" name="firstname" placeholder="Wpisz nazwę obiektu">
+            <input id="name" type="text" name="firstname" placeholder="Wpisz nazwę obiektu">
 
             <div class="small-text-label">Maksymalna cena za obiekt: </div>
-            <input class="first" type="text" name="firstname" placeholder="Cena za dobę od [PLN]">
+            <input id="price" class="first" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="firstname" placeholder="Cena za dobę od [PLN]">
 
             
             <div class="flex-row">
                 <div class="flex-column max-width">
                     <div class="small-text-label">Cena za osobę: </div>
-                    <input type="text" name="firstname" placeholder="Cena za osobę [PLN]">
+                    <input id="price_per_person" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57'  name="firstname" placeholder="Cena za osobę [PLN]">
                 </div>
                 <div class="flex-column max-width">
                     <div class="small-text-label">Maks. osób: </div>
-                    <input type="text" name="firstname" placeholder="Maksymalna liczba osób">
+                    <input id="max_guests" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="firstname" placeholder="Maksymalna liczba osób">
                 </div>
             </div>
             <div class="flex-row">
                 <div class="flex-column max-width">
                     <div class="small-text-label">Ulica: </div>
-                    <input type="text" name="firstname" placeholder="Ulica">
+                    <input id="street" type="text" name="firstname" placeholder="Ulica">
                 </div>
                 <div class="flex-column max-width">
                     <div class="small-text-label">Miasto: </div>
-                    <input type="text" name="firstname" placeholder="Miasto">
+                    <input id="city" type="text" name="firstname" placeholder="Miasto">
                 </div>
             </div>
             <div class="flex-row">
                 <div class="flex-column max-width">
                     <div class="small-text-label">Numer domu: </div>
-                    <input type="text" name="firstname" placeholder="Numer domu">
+                    <input id="building_number" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="firstname" placeholder="Numer domu">
                 </div>
                 <div class="flex-column max-width">
                     <div class="small-text-label">Numer lokalu: </div>
-                    <input type="text" name="firstname" placeholder="Numer lokalu">
+                    <input id="apartment_number" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="firstname" placeholder="Numer lokalu">
                 </div>
             </div>
             <div class="flex-row">
                 <div class="flex-column max-width">
                     <div class="small-text-label">Liczba pięter: </div>
-                    <input type="text" name="firstname" placeholder="Liczba pięter">
+                    <input id="number_of_levels" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="firstname" placeholder="Liczba pięter">
                 </div>
                 <div class="flex-column max-width">
                     <div class="small-text-label">Powierzchnia: </div>
-                    <input type="text" name="firstname" placeholder="Powierzchnia">
+                    <input id="sq_meters" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="firstname" placeholder="Powierzchnia">
                 </div>
             </div>
 
             <div class="options-grid">
                 <div class="horizontal-box">
                     <div class="small-text-label">Parking: </div>
-                    <input type="checkbox" checked="">
+                    <input id="parking" type="checkbox" checked="">
                     <span class="checkmark"></span>
                 </div>
 
                 <div class="horizontal-box">
                     <div class="small-text-label">Kuchnia: </div>
-                    <input type="checkbox" checked="">
+                    <input id="kitchen" type="checkbox" checked="">
                     <span class="checkmark"></span>
                 </div>
 
                 <div class="horizontal-box">
                     <div class="small-text-label">Zwierzęta: </div>
-                    <input type="checkbox" checked="">
+                    <input id="animals" type="checkbox" checked="">
                     <span class="checkmark"></span>
                 </div>
 
                 <div class="horizontal-box">
                     <div class="small-text-label">Telewizja: </div>
-                    <input type="checkbox" checked="">
+                    <input id="tv" type="checkbox" checked="">
                     <span class="checkmark"></span>
                 </div>
 
                 <div class="horizontal-box">
                     <div class="small-text-label">Internet: </div>
-                    <input type="checkbox" checked="">
+                    <input id="internet" type="checkbox" checked="">
                     <span class="checkmark"></span>
                 </div>
 
                 <div class="horizontal-box">
                     <div class="small-text-label">Łazienka prywatna: </div>
-                    <input type="checkbox" checked="">
+                    <input id="toilet" type="checkbox" checked="">
                     <span class="checkmark"></span>
                 </div>
 
                 <div class="horizontal-box">
                     <div class="small-text-label">Balkon: </div>
-                    <input type="checkbox" checked="">
+                    <input id="balcony" type="checkbox" checked="">
                     <span class="checkmark"></span>
                 </div>
 
                 <div class="horizontal-box">
                     <div class="small-text-label">Taras: </div>
-                    <input type="checkbox" checked="">
+                    <input id="tarrace" type="checkbox" checked="">
+                    <span class="checkmark"></span>
+                </div>
+
+                <div class="horizontal-box">
+                    <div class="small-text-label">Cisza nocna: </div>
+                    <input id="curfew" type="checkbox" checked="">
                     <span class="checkmark"></span>
                 </div>
             </div>
             <div class="horizontal-box-2">
                 <div class="small-text-label">Zdjęcia: </div>
             </div>
-            <button class="btn small-margin fill-all-space" role="button" id="photosButton">Dodaj zdjęcie</button>
+            {{!-- <button class="btn small-margin fill-all-space" role="button" id="photosButton">Dodaj zdjęcie</button> --}}
+                <form action="/new_offer" method="POST" enctype="multipart/form-data">
+                    <div class="flex-row">
+                        <label class="btn small-margin fill-all-space">
+                            <input class="file-upload" type="file" name="image" />
+                            Dodaj zdjęcie
+                         </label>
+                    
+                        <button class="btn small-margin fill-all-space" type="submit">Zatwierdź</button>
+                    </div>
+                </form>
             <div class="flex-row" id="photos">
             </div>
-            <form action="/new_offer" method="POST" enctype="multipart/form-data">
-                <input type="file" name="image" />
-                <button type="submit">Upload</button>
-            </form>
+            <div class="images-container flex-row">
+                {{#each links}}
+                    <img class="image" src=".{{link}}">
+                {{/each}}
+            </div>
+
 
         </div>
 
         <div class="wrapper">
-            <a class="btn quarter-width" role="button" href="offer_added.html">Dodaj</a>
+            <a id="dodaj" class="btn quarter-width" role="button" >Dodaj</a>
         </div>
+
+        <script>
+            //tutaj złap kazdy input i wyslij jsona do kontrolera accept
+            {{!-- offer_id INTEGER PRIMARY KEY AUTOINCREMENT,
+        user_id INTEGER NOT NULL,
+        price INTEGER NOT NULL,
+        parking INTEGER NOT NULL,
+        internet INTEGER NOT NULL,
+        curfew INTEGER NOT NULL,
+        toilet INTEGER NOT NULL,
+        animals INTEGER NOT NULL,
+        balcony INTEGER NOT NULL,
+        tv INTEGER NOT NULL,
+        tarrace INTEGER NOT NULL,
+        finished INTEGER DEFAULT 0 NOT NULL --}}
+
+        const data = {
+            name: "",
+            price: "",
+            price_per_person: "",
+            max_guests: "",
+            street: "",
+            city: "",
+            building_number: "",
+            apartment_number: "",
+            number_of_levels: "",
+            sq_meters: "",
+            kitchen: "",
+            user_id: "",
+            price: "",
+            parking: "",
+            internet: "",
+            curfew: "",
+            toilet: "",
+            animals: "",
+            balcony: "",
+            tv: "",
+            tarrace: "",
+            finished: ""
+        }
+
+        const inputs = document.getElementsByTagName('input');
+        for(let input of inputs){
+            input.addEventListener('click', () => {
+                if(!input.value)
+                    input.classList.toggle('required-input');
+            })
+        }
+        
+        const addAnchor = document.getElementById("dodaj");
+        addAnchor.addEventListener('click', () => {
+            data.name = document.getElementById('name').value;
+            data.price = document.getElementById('price').value;
+            data.price_per_person = document.getElementById('price_per_person').value;
+            data.max_guests = document.getElementById('max_guests').value;
+            data.street = document.getElementById('street').value;
+            data.city = document.getElementById('city').value;
+            data.building_number = document.getElementById('building_number').value;
+            data.apartment_number = document.getElementById('apartment_number').value;
+            data.number_of_levels = document.getElementById('number_of_levels').value;
+            data.sq_meters = document.getElementById('sq_meters').value;
+            data.kitchen = document.getElementById('kitchen').value;
+            //data.user_id = document.getElementById('price_per_person')
+            data.price = document.getElementById('price').value;
+            data.parking = document.getElementById('parking').value;
+            data.internet = document.getElementById('internet').value;
+            data.curfew = document.getElementById('curfew').value;
+            data.toilet = document.getElementById('toilet').value;
+            data.animals = document.getElementById('animals').value;
+            data.balcony = document.getElementById('balcony').value;
+            data.tv = document.getElementById('tv').value;
+            data.tarrace = document.getElementById('tarrace').value;
+            data.finished = 1
+
+            console.log(data);
+
+            let hasMissingValues = false;
+            for(const [key, value] of Object.entries(data)){
+                if(!value){
+                    const element = document.getElementById(key);
+                    element.classList.toggle("required-input");
+                    hasMissingValues = true;
+                }
+            }
+
+            if(hasMissingValues) return;
+
+            console.log(data);
+            //finish the other data. just like above
+            //fetch('/new_offer/accept', { method: 'POST' })
+        });
+        </script>
     </main>
