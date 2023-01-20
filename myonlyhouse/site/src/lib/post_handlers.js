@@ -2,9 +2,6 @@ const database = require('../../dbsqlite3');
 
 exports.home = (req, res) => {
 	try {
-		console.log('req body: ');
-		console.log(req.body);
-
 		let opcje = {
 			parking: 0,
 			internet: 0,
@@ -28,7 +25,6 @@ exports.home = (req, res) => {
 		let offers = database.list_offers(0, 10, req.body.lokalizacja_mieszkania, parseInt(req.body.cena_za_dobe_od), parseInt(req.body.cena_za_dobe_do), opcje.parking, opcje.internet, opcje.curfew,
 			opcje.toilet, opcje.animals, opcje.balcony, opcje.tv, opcje.tarrace);
 
-		console.log(offers);
 		req.session.offer = [];
 
 		for(let i = 0; i < offers.length; i++)
@@ -61,14 +57,14 @@ exports.offer_preview = (req, res) => {
 
 		// saving data about reservation price and period
 		req.session.offer = {
-			price: '111',
+			price: req.session.offerData.price, // '111',
 			startDate: req.body.startDate,
 			endDate: req.body.endDate,
 		};
 
 		// ! POBIERZ TE DANE Z BAZY DANYCH
 		//
-		req.session.price = '200';
+		req.session.price = req.session.offerData.price;
 		req.session.service_price = '50';
 
 		res.redirect('/confirmation');
@@ -82,10 +78,7 @@ exports.offer_preview = (req, res) => {
 
 exports.confirmation = (req, res) => {
 	try {
-		// zapis w bazie rezerwację dla danego uzytkownika
-		// id uzytkownika: req.session.user_id
-		// id rezerwacji trzeba znaleźć na bazie danych z req.session.offerData
-		// daty rezerwacji znajdują się w: req.session.offer
+		database.add_reservation(req.session.offerData.id, req.session.user_id, req.session.offer.startDate, req.session.offer.endDate);
 		req.session.offer = null;
 		req.session.offerData = null;
 

@@ -10,12 +10,10 @@ exports.home = (req, res) => {
 exports.offer_preview = (req, res) => {
 	
 	let id = req.params.id.substring(3);
-
-	// pobranie danych o ofercie z bazy na podstawie id
-	// ...
 	const dbData = database.get_offer(id);
 
 	const offerData = {
+		id: id,
 		short_description: dbData.desc,
 		address: dbData.address,
 		price: dbData.price,
@@ -27,7 +25,7 @@ exports.offer_preview = (req, res) => {
 		telewizja: dbData.tv,
 		lazienka: dbData.toilet,
 		taras: dbData.tarrace,
-		stars: dbData.stars, // liczba całkowita
+		stars: dbData.stars,
 	};
 
 	const comments = [
@@ -48,8 +46,6 @@ exports.offer_preview = (req, res) => {
 };
 
 exports.search_results = (req, res) => {
-	console.log('search results session: ');
-	console.log(req.session.offer);
 	const offerArray = { ...req.session.offer };
 
 	req.session.offer = null;
