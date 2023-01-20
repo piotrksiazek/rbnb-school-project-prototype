@@ -1,3 +1,5 @@
+const database = require('../../dbsqlite3');
+
 /* eslint-disable node/no-unsupported-features/es-syntax */
 exports.home = (req, res) => {
 	res.render('home');
@@ -6,23 +8,26 @@ exports.home = (req, res) => {
 // app pages
 
 exports.offer_preview = (req, res) => {
-	console.log(`offer id: ${req.params.id}`);
+	
+	let id = req.params.id.substring(3);
 
 	// pobranie danych o ofercie z bazy na podstawie id
 	// ...
+	const dbData = database.get_offer(id);
+
 	const offerData = {
-		short_description: 'desc',
-		address: 'add 1',
-		price: '111',
-		parking: '1',
-		zwierzeta: '1',
-		internet: '1',
-		balkon: '1',
-		cisza_nocna: '1',
-		telewizja: '1',
-		lazienka: '1',
-		taras: '1',
-		stars: '4', // liczba całkowita
+		short_description: dbData.desc,
+		address: dbData.address,
+		price: dbData.price,
+		parking: dbData.parking,
+		zwierzeta: dbData.animals,
+		internet: dbData.internet,
+		balkon: dbData.balcony,
+		cisza_nocna: dbData.curfew,
+		telewizja: dbData.tv,
+		lazienka: dbData.toilet,
+		taras: dbData.tarrace,
+		stars: dbData.stars, // liczba całkowita
 	};
 
 	const comments = [

@@ -6,7 +6,6 @@ const multiparty = require('multiparty');
 const cookieParser = require('cookie-parser');
 const expressSession = require('express-session');
 
-const database = require('./dbsqlite3');
 const fileUpload = require('express-fileupload');
 // const sqlite = require("better-sqlite3")
 // const SqliteStore = require("better-sqlite3-session-store")(expressSession)
@@ -23,7 +22,8 @@ const getHandlers = require('./src/lib/get_handlers');
 const postHandlers = require('./src/lib/post_handlers');
 
 const { credentials } = require('./src/config');
-const { Database } = require('sqlite3');
+
+const database = require('./dbsqlite3');
 
 const app = express();
 
