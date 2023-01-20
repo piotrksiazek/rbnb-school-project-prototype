@@ -50,6 +50,12 @@ function init_database() {
         link TEXT NOT NULL
         );`);
 
+    db.exec(`CREATE TABLE IF NOT EXISTS Comments (
+        offer_id INTEGER NOT NULL,
+        nick TEXT NOT NULL,
+        msg TEXT NOT NULL
+        );`);
+
     console.log("Initialized database");
 }
 
@@ -130,9 +136,17 @@ function get_photos_no_callback(offer_id) {
 
 // callback(start_date, end_date) for each reservation date
 function get_offer_reservation_dates(offer_id) {
-    db.prepare(`SELECT * FROM Reservations NATURAL JOIN Offers WHERE offer_id = ?`).run(offer_id);
+    return db.prepare(`SELECT * FROM Reservations NATURAL JOIN Offers WHERE offer_id = ?`).bind(offer_id).all();
+}
+
+function get_comments(offer_id) {
+    return db.prepare(`SELECT * FROM Comments WHERE offer_id = ?`).bind(offer_id).all();
+}
+
+function add_comment(offer_id, nick, msg) {
+    db.prepare(`INSERT INTO Comments VALUES (?, ?, ?)`).run(offer_id, nick, msg);
 }
 
 module.exports = { init_database, add_user, check_login, delete_user, add_offer, get_offer, delete_offer, list_offers, add_reservation,
     delete_reservation, get_user_offers, get_user_reservations, add_photo, delete_photo, get_photos, get_offer_reservation_dates, get_newest_offer_id_for_user,
-    get_photos_no_callback };
+    get_photos_no_callback, get_comments, add_comment };

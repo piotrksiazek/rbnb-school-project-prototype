@@ -28,16 +28,12 @@ exports.offer_preview = (req, res) => {
 		stars: dbData.stars,
 	};
 
-	const comments = [
-		{
-			nick: 'nick1',
-			comment: 'comment1',
-		},
-		{
-			nick: 'nick2',
-			comment: 'comment2',
-		},
-	];
+	const dbComments = database.get_comments(id);
+	const comments = [];
+
+	for(let i = 0; i < dbComments.length; i++) {
+		comments.push({nick: dbComments[i].nick, comment: dbComments[i].msg});
+	}
 
 	req.session.offerData = offerData;
 
