@@ -83,7 +83,6 @@ function delete_offer(id) {
 }
 
 function list_offers(starting_id, amount, address, start_price, end_price, parking, internet, curfew, toilet, animals, balcony, tv, tarrace) {
-    console.log(`SELECT offer_id FROM Offers WHERE offer_id >= ${starting_id} AND address = ${address} AND price >= ${start_price} AND price <= ${end_price} AND parking >= ${parking} AND internet >= ${internet} AND curfew >= ${curfew} AND toilet >= ${toilet} AND animals >= ${animals} AND balcony >= ${balcony} AND tv >= ${tv} AND tarrace >= ${tarrace} LIMIT ${amount}`);
     return db.prepare(`SELECT offer_id FROM Offers WHERE offer_id >= ? AND address = ? AND price >= ? AND price <= ? AND parking >= ? AND internet >= ? AND curfew >= ? AND toilet >= ? AND animals >= ? AND balcony >= ? AND tv >= ? AND tarrace >= ? LIMIT ?`).bind(starting_id, address, start_price, end_price, parking, internet, curfew, toilet, animals, balcony, tv, tarrace, amount).all();
 }
 
