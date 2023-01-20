@@ -71,7 +71,8 @@ exports.report_sent = (req, res) => {
 };
 
 exports.reservations = (req, res) => {
-	res.render('reservations');
+	const reserv = database.get_user_reservations(req.session.user_id);
+	res.render('reservations', {myOffers: reserv});
 };
 
 exports.add_ofer = (req, res) => {

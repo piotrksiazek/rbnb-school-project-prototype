@@ -8,16 +8,16 @@
 				<div class='offer-label'>
 					<div
 						class='bold-text-label'
-					>{{this.short_description}}</div>
+					>{{this.desc}}</div>
 					<div class='small-text-label'>{{this.address}}</div>
-					<div class='small-text-label'>{{this.phone_number}}</div>
+					<!-- <div class='small-text-label'>{{this.phone_number}}</div> -->
 				</div>
 				<div class='offer-label'>
 					<div>
 						<button
 							class='standard-button'
 							role='button'
-							onclick="location.href='/accommodation_report:id={{this.id}}'"
+							onclick="location.href='/accommodation_report:id={{this.offer_id}}'"
 						>
 							Zgłoś problem
 						</button>
@@ -26,7 +26,7 @@
 						<button
 							class='standard-button'
 							role='button'
-							onclick="location.href='/review:id={{this.id}}'"
+							onclick="location.href='/review:id={{this.offer_id}}'"
 						>
 							Oceń
 						</button>

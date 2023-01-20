@@ -72,6 +72,10 @@ function check_login(login, password) {
     return db.prepare(`SELECT * FROM Users WHERE login = ? and password = ?`).bind(login, password).get() != null;
 }
 
+function get_user_from_login(login) {
+    return db.prepare(`SELECT * FROM Users WHERE login = ?`).bind(login).get();
+}
+
 function add_offer(user_id, title, desc, address, price, parking, internet, curfew, toilet, animals, balcony, tv, tarrace, stars, finished) {
     db.prepare(`INSERT INTO Offers VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`).run(user_id, title, desc, address, price, parking, internet, curfew, toilet, animals, balcony, tv, tarrace, stars, finished);
 }
@@ -107,7 +111,7 @@ function get_user_offers(user_id) {
 
 // callback(offer_id, start_date, end_date)
 function get_user_reservations(user_id) {
-    return db.prepare(`SELECT * FROM Offers NATURAL JOIN Reservations WHERE reserving_user_id = ?`).run(user_id);
+    return db.prepare(`SELECT * FROM Offers NATURAL JOIN Reservations WHERE reserving_user_id = ?`).bind(user_id).all();
 }
 
 function add_photo(offer_id, link) {
@@ -149,4 +153,4 @@ function add_comment(offer_id, nick, msg) {
 
 module.exports = { init_database, add_user, check_login, delete_user, add_offer, get_offer, delete_offer, list_offers, add_reservation,
     delete_reservation, get_user_offers, get_user_reservations, add_photo, delete_photo, get_photos, get_offer_reservation_dates, get_newest_offer_id_for_user,
-    get_photos_no_callback, get_comments, add_comment };
+    get_photos_no_callback, get_comments, add_comment, get_user_from_login };

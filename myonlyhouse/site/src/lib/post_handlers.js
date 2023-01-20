@@ -52,9 +52,6 @@ exports.home = (req, res) => {
 
 exports.offer_preview = (req, res) => {
 	try {
-		console.log('req body: ');
-		console.log(req.body);
-
 		// saving data about reservation price and period
 		req.session.offer = {
 			price: req.session.offerData.price, // '111',
