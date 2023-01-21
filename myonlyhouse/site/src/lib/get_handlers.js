@@ -111,6 +111,10 @@ exports.offer_deleted = (req, res) => {
 	res.render('offer_deleted');
 };
 
+exports.offer_added = (req, res) => {
+	res.render('offer_added');
+}
+
 exports.registration = (req, res) => {
 	res.render('registration');
 };

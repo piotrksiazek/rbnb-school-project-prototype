@@ -126,6 +126,7 @@ app.get('/add_offer', getHandlers.add_ofer);
 app.get('/password_reminder', getHandlers.password_reminder);
 app.get('/password_reminder_sent', getHandlers.password_reminder_sent);
 app.get('/review', getHandlers.review);
+app.get('/offer_added', getHandlers.offer_added);
 app.get('/registration', getHandlers.registration);
 app.get('/account_created ', getHandlers.account_created);
 app.get('/review_sent', getHandlers.review_sent);
