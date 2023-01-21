@@ -3,18 +3,19 @@
     <div class="panel my_offers-panel">
         <h1> Twoje oferty</h1>
 
-        {{#each offer}}
+        {{#each offers}}
         <div class="offer">
-            <img src="{{this.interior_1}}" alt="">
+            <img src="/{{this.interior_1}}" alt="">
             <div class="offer-label">
                 <div class="bold-text-label">{{this.name}}</div>
-                <div class="small-text-label"{{this.address}}</div>
+                <div class="small-text-label">{{this.address}}</div>
                 <div class="small-text-label">{{this.phone_number}}</div>
             </div>
             <div class="offer-label">
-                
-                <button class="standard-button" style="min-width: 200px;" role="button"
-                            onclick="location.href='offer_deleted.html'">Usuń ofertę</button>
+                <form action="/my_offers" method="POST">
+                    <input style="display:none !important;" type="text" name="offer_id" value="{{this.offer_id}}">
+                    <button class="standard-button" type="submit" role="button">Usuń ofertę</button>
+                </form>
             </div>
         </div>
         {{/each}}

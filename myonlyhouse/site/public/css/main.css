@@ -887,21 +887,21 @@ div#rating .clear {
 }
 
 div#rating {
-    width: 170px;
+    width: 30px;
     unicode-bidi: bidi-override;
     direction: rtl;
     text-align: center;
-    position: relative;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 50px;
 }
 
 div#rating > label {
-    position: relative;
     cursor: pointer;
     color: #000;
-    font-size: 28px;
+    font-size: 35px;
+    width: 30px;
+    margin: 10px;
 }
 
 div#rating > label:hover,
@@ -915,8 +915,8 @@ div#rating > label:hover ~ label:before,
 div#rating > input.radio-btn:checked ~ label:before,
 div#rating > input.radio-btn:checked ~ label:before {
     content: "\2605";
-    position: fixed;
     color: #FFD700;
+    width: 30px;
 }
 
 div#review-panel .standard-button {
@@ -952,6 +952,11 @@ div#review-panel .standard-button:active {
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.5);
 }
 
+#rating {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 /* ------------------------------------------------------------------------------------------------------------------------ */
 /* my_offers */

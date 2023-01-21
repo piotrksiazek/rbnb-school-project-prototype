@@ -8,7 +8,6 @@ exports.home = (req, res) => {
 // app pages
 
 exports.offer_preview = (req, res) => {
-	
 	let id = req.params.id.substring(3);
 	const dbData = database.get_offer(id);
 
@@ -31,8 +30,8 @@ exports.offer_preview = (req, res) => {
 	const dbComments = database.get_comments(id);
 	const comments = [];
 
-	for(let i = 0; i < dbComments.length; i++) {
-		comments.push({nick: dbComments[i].nick, comment: dbComments[i].msg});
+	for (let i = 0; i < dbComments.length; i++) {
+		comments.push({ nick: dbComments[i].nick, comment: dbComments[i].msg });
 	}
 
 	req.session.offerData = offerData;
@@ -48,7 +47,6 @@ exports.search_results = (req, res) => {
 
 	res.render('search_results', { offer: offerArray });
 };
-
 
 exports.confirmation_sent = (req, res) => {
 	res.render('confirmation_sent');
@@ -72,7 +70,7 @@ exports.report_sent = (req, res) => {
 
 exports.reservations = (req, res) => {
 	const reserv = database.get_user_reservations(req.session.user_id);
-	res.render('reservations', {myOffers: reserv});
+	res.render('reservations', { myOffers: reserv });
 };
 
 exports.add_ofer = (req, res) => {
@@ -88,7 +86,25 @@ exports.accommodation_report_sent = (req, res) => {
 };
 
 exports.my_offers = (req, res) => {
-	res.render('my_offers');
+	
+	const myOffers = [
+		{
+			interior_1: 'img path 1',
+			name: 'nazwa 1',
+			address: 'adres 1',
+			phone_number: '+48 121 121 121',
+			offer_id: '1',
+		},
+		{
+			interior_1: 'img path 2',
+			name: 'nazwa 2',
+			address: 'adres 2',
+			phone_number: '+48 121 121 121',
+			offer_id: '2',
+		},
+	];
+
+	res.render('my_offers', { offers: myOffers });
 };
 
 exports.offer_deleted = (req, res) => {
@@ -104,9 +120,17 @@ exports.account_created = (req, res) => {
 };
 
 exports.password_reminder = (req, res) => {
-	res.render('password_reminder')
-}
+	res.render('password_reminder');
+};
 
 exports.password_reminder_sent = (req, res) => {
-	res.render('password_reminder_sent')
-}
+	res.render('password_reminder_sent');
+};
+
+exports.review = (req, res) => {
+	res.render('review');
+};
+
+exports.review_sent = (req, res) => {
+	res.render('review_sent');
+};
