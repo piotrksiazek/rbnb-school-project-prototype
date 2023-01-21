@@ -143,7 +143,6 @@ input[type=text], input[type=password] {
     grid-template-columns: 50% 50%;
 }
 
-
 .options-grid .horizontal-box input {
     width: min-content;
     justify-self: right;
@@ -151,13 +150,14 @@ input[type=text], input[type=password] {
 
 
 .options-grid .horizontal-box {
-    justify-content: space-between;
-    margin-top: 0px;
     height: 1.5em;
+    justify-content: space-between;
+    margin-top: 10px;
+    width: 80%;
 }
 
 .options-grid .horizontal-box .small-text-label {
-    width: 50%;
+    width: 40%;
 }
 
 .options-grid .horizontal-box .text-label {
@@ -447,33 +447,8 @@ input[type=text], input[type=password] {
     margin-left: 2%;
 }
 
-.options-grid {
-    margin-top: 10px;
-
-    display: grid;
-    grid-template-columns: 50% 50%;
-
-}
 
 
-.options-grid .horizontal-box input {
-    width: min-content;
-    justify-self: right;
-}
-
-
-.options-grid .horizontal-box {
-    justify-content: space-between;
-    margin-top: 10px;
-}
-
-.options-grid .horizontal-box .small-text-label {
-    width: 50%;
-}
-
-.options-grid .horizontal-box .text-label {
-    margin-right: 15px;
-}
 
 .wrapper {
     margin-top: 30px;
@@ -546,7 +521,8 @@ input {
 }
 
 .quarter-width {
-    width: 25%;
+    width: 50%;
+
 }
 
 select {
