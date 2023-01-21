@@ -6,15 +6,15 @@
                 <h3>{{offerData.address}}</h3>
                 <div class="flex-row">
                     <div class="flex-row half-width">
-                        <div class="big-picture" id="bigPicture"></div>
+                        <img id="bigPicture" src="/img/interior1.jpg"/>
                     </div>
 
                     <div class="flex-column">
                         <div class="flex-row">
-                            <div class="small-picture"></div>
-                            <div class="small-picture"></div>
-                            <div class="small-picture"></div>
-                            <div class="small-picture"></div>
+                            <img class="small-picture" id="offer-preview-picture-1" src="/img/interior1.jpg"/>
+                            <img class="small-picture" id="offer-preview-picture-2" src="/img/interior2.jpg"/>
+                            <img class="small-picture" id="offer-preview-picture-3" src="/img/interior3.jpg"/>
+                            <img class="small-picture" id="offer-preview-picture-4" src="/img/interior4.jpg"/>
                         </div>
                         <br />
                         <div>
@@ -22,49 +22,50 @@
                                 <div class="options-grid">
                                     <div class="horizontal-box">
                                         <div class="small-text-label">Parking: </div>
-                                        <input type="checkbox" {{#if offerData.parking}}checked="">{{/if}}
+                                        <input type="checkbox" {{#if offerData.parking}}checked="" {{/if}}>
                                         <span class="checkmark"></span>
                                     </div>
 
                                     <div class="horizontal-box">
                                         <div class="small-text-label">Zwierzęta: </div>
-                                        <input type="checkbox" {{#if offerData.zwierzeta}}checked="">{{/if}}
+                                        <input type="checkbox" {{#if offerData.zwierzeta}}checked="" {{/if}}>
                                         <span class="checkmark"></span>
                                     </div>
 
                                     <div class="horizontal-box">
                                         <div class="small-text-label">Internet: </div>
-                                        <input type="checkbox" {{#if offerData.internet}}checked="">{{/if}}
+                                        <input type="checkbox" {{#if offerData.internet}}checked="" {{/if}}>
                                         <span class="checkmark"></span>
                                     </div>
 
                                     <div class="horizontal-box">
                                         <div class="small-text-label">Balkon: </div>
-                                        <input type="checkbox" {{#if offerData.balkon}}checked="">{{/if}}
+                                        <input type="checkbox" {{#if offerData.balkon}}checked="" {{/if}}>
                                         <span class="checkmark"></span>
                                     </div>
 
+
                                     <div class="horizontal-box">
                                         <div class="small-text-label">Cisza nocna: </div>
-                                        <input type="checkbox" {{#if offerData.cisza_nocna}}checked="">{{/if}}
+                                        <input type="checkbox" {{#if offerData.cisza_nocna}}checked="" {{/if}}>
                                         <span class="checkmark"></span>
                                     </div>
 
                                     <div class="horizontal-box">
                                         <div class="small-text-label">Telewizja: </div>
-                                        <input type="checkbox" {{#if offerData.telewizja}}checked="">{{/if}}
+                                        <input type="checkbox" {{#if offerData.telewizja}}checked="" {{/if}}>
                                         <span class="checkmark"></span>
                                     </div>
 
                                     <div class="horizontal-box">
                                         <div class="small-text-label">Łazienka: </div>
-                                        <input type="checkbox" {{#if offerData.lazienka}}checked="">{{/if}}
+                                        <input type="checkbox" {{#if offerData.lazienka}}checked="" {{/if}}>
                                         <span class="checkmark"></span>
                                     </div>
 
                                     <div class="horizontal-box">
                                         <div class="small-text-label">Taras: </div>
-                                        <input type="checkbox" {{#if offerData.taras}}checked="">{{/if}}
+                                        <input type="checkbox" {{#if offerData.taras}}checked="" {{/if}}>
                                         <span class="checkmark"></span>
                                     </div>
                                 </div>
@@ -112,11 +113,11 @@
                     <br />
                     <br />
                     <div class="flex-row space-between">
-                        <a class="btn small-margin fill-all-space" role="button" href="/contact">Kontakt</a>
-                        <a class="btn small-margin fill-all-space" role="button" href="/report">Zgłoś</a>
-                    </div>
-                    <button class="btn small-margin fill-all-space" type="submit" role="button">Rezerwuj</button>
+                        <a class="btn offer-preview-button" role="button" href="/contact">Kontakt</a>
+                        <a class="btn offer-preview-button" role="button" href="/report">Zgłoś</a>
 
+                    </div>
+                    <button class="btn small-margin fill-all-space" id="reserve-button" type="submit" role="button" href="/confirmation">Rezerwuj</button>
                 </form>
             </div>
         </div>
@@ -128,8 +129,8 @@
     const smallPictures = document.getElementsByClassName("small-picture");
     for (let picture of smallPictures) {
         picture.addEventListener('click', () => {
-            const color = getComputedStyle(picture).backgroundColor;
-            bigPicture.style.backgroundColor = color;
+            const imageSource = picture.src;
+            bigPicture.src = imageSource;
         })
     }
 </script>

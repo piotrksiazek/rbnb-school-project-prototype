@@ -695,15 +695,13 @@ body > main > div > div.panel.left-panel > div > div.flex-row > div.flex-column 
 
 /* ------------------------------------------------------------------------------------------------------------------------ */
 /* offer_preview */
-.big-picture {
+img#bigPicture {
     border-radius: 4px;
     width: 22vw;
     height: 22vw;
-    background-image: url("../img/interior1.jpg");
-    background-size: cover;
 }
 
-.small-picture {
+img.small-picture{
     background-size: cover;
     border-radius: 4px;
     margin-right: 6px;
@@ -711,23 +709,7 @@ body > main > div > div.panel.left-panel > div > div.flex-row > div.flex-column 
     height: 100px;
 }
 
-.small-picture:nth-of-type(1) {
-    background-image: url("../img/interior1.jpg");
-}
-
-.small-picture:nth-of-type(2) {
-    background-image: url("../img/interior2.jpg");
-}
-
-.small-picture:nth-of-type(3) {
-    background-image: url("../img/interior3.jpg");
-}
-
-.small-picture:nth-of-type(4) {
-    background-image: url("../img/interior4.jpg");
-}
-
- div.flex-column  input[type="checkbox"] {
+ div.flex-column input[type="checkbox"] {
     height: unset;
 }
 
@@ -771,6 +753,23 @@ div.comment h4 {
     border-width: 1px;
     padding: 10px;
     margin: 5px;
+}
+
+body > main > div > div.panel.right-panel > div > form > button#reserve-button {
+    border-radius: 0.70em;
+    font-family: 'Montserrat', sans-serif;
+    height: 2em;
+    letter-spacing: 1px;
+    margin-left: 0;
+    margin-top: 1vw;
+    width: 100%;
+}
+
+div.flex-row.space-between a.btn.offer-preview-button {
+    border-radius: 0.70em;
+    margin-top: 1vw;
+    width: 45%;
+    letter-spacing: 1px;
 }
 
 /* ------------------------------------------------------------------------------------------------------------------------ */
