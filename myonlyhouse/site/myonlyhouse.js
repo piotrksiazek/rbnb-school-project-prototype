@@ -118,6 +118,7 @@ app.get('contact_sent', getHandlers.contact_sent);
 app.get('/report', getHandlers.report);
 app.get('/report_sent', getHandlers.report_sent);
 app.get('/reservations', getHandlers.reservations);
+app.get('/my_offers', getHandlers.my_offers);
 app.get('/accommodation_report', getHandlers.accommodation_report);
 app.get('/accommodation_report_sent', getHandlers.accommodation_report_sent);
 app.get('/offer_deleted', getHandlers.offer_deleted);
