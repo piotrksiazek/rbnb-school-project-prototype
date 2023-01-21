@@ -18,7 +18,7 @@ router.post('/', (req, res) => {
             res.redirect('/')
         }
     } else {
-        res.send("Nieprawidlowa nazwa uzytkownika lub haslo")
+        res.render("login_error")
     }
 })
 

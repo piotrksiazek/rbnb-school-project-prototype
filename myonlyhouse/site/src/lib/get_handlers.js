@@ -102,3 +102,11 @@ exports.registration = (req, res) => {
 exports.account_created = (req, res) => {
 	res.render('account_created');
 };
+
+exports.password_reminder = (req, res) => {
+	res.render('password_reminder')
+}
+
+exports.password_reminder_sent = (req, res) => {
+	res.render('password_reminder_sent')
+}

@@ -2,13 +2,13 @@
     <form action="/login" method="post" class="panel registration-panel">
         <div class="bold-text-label registration-label">Logowanie </div>
 
-        <div class="small-text-label">Login: </div>
-        <input type="text" name="login" id="login" placeholder="e-mail">
+        <div class="small-text-label">E-mail: </div>
+        <input type="text" name="login" id="login" placeholder="e-mail" required>
 
         <div class="small-text-label">Hasło: </div>
-        <input type="password" name="haslo" id="haslo" placeholder="hasło">
+        <input type="password" name="haslo" id="haslo" placeholder="hasło" required>
 
-        <a href="forgot_password.html">Nie pamiętasz hasła?</a>
+        <a href="/password_reminder">Nie pamiętasz hasła?</a>
 
     <div class="wrapper">
 <!--        <button class="btn quarter-width">Zaloguj</button>-->
@@ -16,3 +16,4 @@
     </div>
     </form>
 </main>
+
