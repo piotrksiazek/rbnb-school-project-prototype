@@ -128,7 +128,7 @@ app.get('/password_reminder_sent', getHandlers.password_reminder_sent)
 
 // app.get('/password_reminder', handlers.password_reminder);
 // app.get('/password_reminder_sent', handlers.password_reminder_sent);
-// app.get('/offer_added', handlers.offer_added);
+app.get('/offer_added', getHandlers.offer_added);
 // app.get('/add_offer', handlers.add_offer);
 
 app.get('/registration', getHandlers.registration);
