@@ -986,3 +986,15 @@ div.offer-label button#standard-button {
 .required-input {
     color: red;
 }
+
+a.btn.offer-preview-button#add-offer {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 4vw;
+    width: 40%;
+}
+
+
+
+
+
