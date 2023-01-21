@@ -51,7 +51,7 @@ router.post('/', (req, res) => {
         photosArr.push(photo.link);
       }
     console.log(photos);
-    res.render("add_offer", {links: photosArr});
+    res.render("add_offer", {links: photos});
 
 });
 
