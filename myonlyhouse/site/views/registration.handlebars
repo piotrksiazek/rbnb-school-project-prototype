@@ -5,25 +5,27 @@
 
             <div class="small-text-label">Imię i nazwisko: </div>
             <div class="horizontal-box">
-                <input class="first" type="text" name="firstname" id="firstname" placeholder="imię" required/>
-                <input class="second" type="text" name="surname" id="surname" placeholder="nazwisko" required/>
+                <input class="first" type="text" name="firstname" id="firstname" placeholder="imię" required minlength="1" maxlength="30"/>
+                <input class="second" type="text" name="surname" id="surname" placeholder="nazwisko" required minlength="1" maxlength="60"/>
             </div>
 
             <div class="small-text-label">Numer telefonu: </div>
-            <input type="text" name="phoneNumber" id="phoneNumber" placeholder="+48 123 123 123" required/>
+            <input type="text" name="phoneNumber" id="phoneNumber" placeholder="+48123123123" required minlength="12" maxlength="12"/>
 
             <div class="small-text-label">Adres email: </div>
-            <input type="text" name="mail" id="mail" placeholder="przyklad@przyklad.pl" required/>
+            <input type="email" name="mail" id="mail" placeholder="przyklad@przyklad.pl" required minlength="3" maxlength="30" style="width: 100%; box-sizing: border-box"/>
 
             <div class="small-text-label">Hasło: </div>
-            <input type="password" name="password" id="password" placeholder="hasło" required/>
+            <input type="password" name="password" id="password" placeholder="hasło" required minlength="6"/>
 
             <div class="small-text-label">Powtórz hasło: </div>
-            <input type="password" name="passwordR" id="passwordR" placeholder="powtórz hasło" required/>
+            <input type="password" name="passwordR" id="passwordR" placeholder="powtórz hasło" required minlength="6"/>
+           <p style="color: red; visibility: hidden;" id="msg_password"> Wprowadzone hasła nie są takie same</p>
         </div>
 
         <div class="wrapper">
-            <input  type="submit" class="standard-button" value="Zarejestruj"/>
+            <input  type="submit" class="standard-button" value="Zarejestruj" id="sbm_button"/>
         </div>
     </form>
+  <script src="public/scripts/registration_validation.js" defer></script>
 </main>
