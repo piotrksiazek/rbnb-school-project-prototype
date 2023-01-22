@@ -101,11 +101,11 @@ db.prepare(`INSERT INTO Offers VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
 }
 
 function get_offer(id) {
-    return db.prepare(`SELECT * FROM Offers WHERE offer_id = ?`).bind(id).get();
+    return db.prepare(`SELECT * FROM Offers WHERE offer_id = ? AND finished = 1`).bind(id).get();
 }
 
 function get_newest_offer_id_for_user(userId) {
-    return db.prepare(`SELECT MAX(offer_id) as id FROM Offers WHERE user_id = ?`).get(userId);
+    return db.prepare(`SELECT MAX(offer_id) as id FROM Offers WHERE user_id = ? AND finished = 1`).get(userId);
 }
 
 function delete_offer(id) {
@@ -144,7 +144,7 @@ function update_offer(user_id, name, price, price_per_person, max_guests, street
 
 
 function list_offers(starting_id, amount, address, start_price, end_price, parking, internet, curfew, toilet, animals, balcony, tv, tarrace) {
-    return db.prepare(`SELECT offer_id FROM Offers WHERE offer_id >= ? AND city LIKE ? AND price >= ? AND price <= ? AND parking >= ? AND internet >= ? AND curfew >= ? AND toilet >= ? AND animals >= ? AND balcony >= ? AND tv >= ? AND tarrace >= ? LIMIT ?`).bind(starting_id, address, start_price, end_price, parking, internet, curfew, toilet, animals, balcony, tv, tarrace, amount).all();
+    return db.prepare(`SELECT offer_id FROM Offers WHERE offer_id >= ? AND city LIKE ? AND price >= ? AND price <= ? AND parking >= ? AND internet >= ? AND curfew >= ? AND toilet >= ? AND animals >= ? AND balcony >= ? AND tv >= ? AND tarrace >= ? LIMIT ?`).bind(starting_id, "%" + address + "%", start_price, end_price, parking, internet, curfew, toilet, animals, balcony, tv, tarrace, amount).all();
 }
 
 function add_reservation(offer_id, reserving_user_id, start_date, end_date) {
@@ -157,12 +157,12 @@ function delete_reservation(offer_id, reserving_user_id, start_date, end_date) {
 
 // callback(offer_id) for each offer
 function get_user_offers(user_id) {
-    return db.prepare(`SELECT * FROM Offers WHERE user_id = ?`).bind(user_id).all();
+    return db.prepare(`SELECT * FROM Offers WHERE user_id = ? AND finished = 1`).bind(user_id).all();
 }
 
 // callback(offer_id, start_date, end_date)
 function get_user_reservations(user_id) {
-    return db.prepare(`SELECT * FROM Offers NATURAL JOIN Reservations WHERE reserving_user_id = ?`).bind(user_id).all();
+    return db.prepare(`SELECT * FROM Offers NATURAL JOIN Reservations WHERE reserving_user_id = ? AND finished = 1`).bind(user_id).all();
 }
 
 function add_photo(offer_id, link) {
@@ -175,12 +175,12 @@ function delete_photo(offer_id, link) {
 
 // callback(link) for each photo
 function get_photos(offer_id) {
-    return db.prepare(`SELECT link FROM Photos NATURAL JOIN Offers WHERE offer_id = ?`).bind(offer_id).all();
+    return db.prepare(`SELECT link FROM Photos NATURAL JOIN Offers WHERE offer_id = ? AND finished = 1`).bind(offer_id).all();
 }
 
 // callback(start_date, end_date) for each reservation date
 function get_offer_reservation_dates(offer_id) {
-    return db.prepare(`SELECT * FROM Reservations NATURAL JOIN Offers WHERE offer_id = ?`).bind(offer_id).all();
+    return db.prepare(`SELECT * FROM Reservations NATURAL JOIN Offers WHERE offer_id = ? AND finished = 1`).bind(offer_id).all();
 }
 
 function check_reservation_date(offer_id){
