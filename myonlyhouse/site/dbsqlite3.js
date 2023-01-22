@@ -141,7 +141,7 @@ function update_offer(user_id, name, price, price_per_person, max_guests, street
 
 
 function list_offers(starting_id, amount, address, start_price, end_price, parking, internet, curfew, toilet, animals, balcony, tv, tarrace) {
-    return db.prepare(`SELECT offer_id FROM Offers WHERE offer_id >= ? AND address = ? AND price >= ? AND price <= ? AND parking >= ? AND internet >= ? AND curfew >= ? AND toilet >= ? AND animals >= ? AND balcony >= ? AND tv >= ? AND tarrace >= ? LIMIT ?`).bind(starting_id, address, start_price, end_price, parking, internet, curfew, toilet, animals, balcony, tv, tarrace, amount).all();
+    return db.prepare(`SELECT offer_id FROM Offers WHERE offer_id >= ? AND address LIKE ? AND price >= ? AND price <= ? AND parking >= ? AND internet >= ? AND curfew >= ? AND toilet >= ? AND animals >= ? AND balcony >= ? AND tv >= ? AND tarrace >= ? LIMIT ?`).bind(starting_id, address, start_price, end_price, parking, internet, curfew, toilet, animals, balcony, tv, tarrace, amount).all();
 }
 
 function add_reservation(offer_id, reserving_user_id, start_date, end_date) {
@@ -180,6 +180,10 @@ function get_offer_reservation_dates(offer_id) {
     return db.prepare(`SELECT * FROM Reservations NATURAL JOIN Offers WHERE offer_id = ?`).bind(offer_id).all();
 }
 
+function check_reservation_date(offer_id){
+    return db.prepare(`SELECT offer_id, start_date, end_date FROM Reservations WHERE offer_id = ?`).bind(offer_id).all()
+}
+
 function get_comments(offer_id) {
     return db.prepare(`SELECT * FROM Comments WHERE offer_id = ?`).bind(offer_id).all();
 }
@@ -188,5 +192,5 @@ function add_comment(offer_id, nick, msg) {
     db.prepare(`INSERT INTO Comments VALUES (?, ?, ?)`).run(offer_id, nick, msg);
 }
 
-module.exports = { init_database, add_user, check_login, delete_user, add_offer, get_offer, delete_offer, list_offers, add_reservation,
+module.exports = { init_database, check_reservation_date, add_user, check_login, delete_user, add_offer, get_offer, delete_offer, list_offers, add_reservation,
     delete_reservation, get_user_offers, get_user_reservations, add_photo, delete_photo, get_photos, get_offer_reservation_dates, get_newest_offer_id_for_user, get_comments, add_comment, get_user_from_login, get_user_id_by_login_no_callback, update_offer };

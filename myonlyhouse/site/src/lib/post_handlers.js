@@ -1,6 +1,7 @@
 const database = require('../../dbsqlite3');
 
 exports.home = (req, res) => {
+	req.session.offer = null;
 	try {
 		let opcje = {
 			parking: 0,
@@ -22,12 +23,29 @@ exports.home = (req, res) => {
 		if (req.body.lazienka == 'on') opcje.toilet = 1;
 		if (req.body.taras == 'on') opcje.tarrace = 1;
 
+		let main_props = {
+			localization: '%',
+			price_from: 0,
+			price_to: 999999,
+		}
+
+		if (req.body.lokalizacja_mieszkania != ""){
+				main_props.localization = req.body.lokalizacja_mieszkania.trim()
+		}
+		if (req.body.cena_za_dobe_od != ""){
+				main_props.price_from = parseInt(req.body.cena_za_dobe_od)
+		}
+		if (req.body.cena_za_dobe_do != ""){
+			main_props.price_to = parseInt(req.body.cena_za_dobe_do)
+		}
+
+
 		let offers = database.list_offers(
 			0,
-			10,
-			req.body.lokalizacja_mieszkania,
-			parseInt(req.body.cena_za_dobe_od),
-			parseInt(req.body.cena_za_dobe_do),
+			50,
+			main_props.localization,
+			main_props.price_from,
+			main_props.price_to,
 			opcje.parking,
 			opcje.internet,
 			opcje.curfew,
@@ -39,6 +57,26 @@ exports.home = (req, res) => {
 		);
 
 		req.session.offer = [];
+
+
+		if(req.body.zameldowanie != ''){
+			const date_from = new Date(req.body.zameldowanie)
+			const date_to = new Date(req.body.wymeldowanie)
+			for(let i = 0; i < offers.length; i++){
+				let db_dates = database.check_reservation_date(offers[i].offer_id)
+				for (let reservation of db_dates){
+					if(reservation != undefined){
+						let reservation_date_from = new Date(reservation.start_date)
+						let reservation_date_to = new Date(reservation.end_date)
+						reservation_date_to.setDate(reservation_date_to.getDate() - 1)
+						if ((date_from > reservation_date_from && date_from < reservation_date_to) || (date_to > reservation_date_from && date_to < reservation_date_to)){
+							offers.splice(i, 1)
+						}
+					}
+				}
+			}
+		}
+
 
 		for (let i = 0; i < offers.length; i++) {
 			let offer = database.get_offer(offers[i].offer_id);

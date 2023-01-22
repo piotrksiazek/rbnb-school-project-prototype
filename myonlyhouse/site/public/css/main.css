@@ -244,6 +244,7 @@ input[type=text], input[type=password] {
     width: 100%;
     margin-top: 30px;
     padding-top: 30px;
+    padding-bottom: 1px;
 }
 
 .search-results-single:first-of-type {
@@ -990,4 +991,22 @@ div.offer-label button#standard-button {
 
 .required-input {
     color: red;
+}
+
+
+
+/* sort menu */
+#sort-menu-li {
+    list-style-type: none;
+    /*border-radius: .90rem;*/
+    /*border: 2px solid #00AFF0;*/
+    /*box-sizing: border-box;*/
+}
+
+#sort-menu-li li:hover {
+    background-color: #4082ed;
+    border-radius: .90rem;
+    border: 2px solid #00AFF0;
+    box-sizing: border-box;
+    cursor: pointer;
 }

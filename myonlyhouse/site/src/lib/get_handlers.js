@@ -43,7 +43,7 @@ exports.offer_preview = (req, res) => {
 exports.search_results = (req, res) => {
 	const offerArray = { ...req.session.offer };
 
-	req.session.offer = null;
+	// req.session.offer = null;
 
 	res.render('search_results', { offer: offerArray });
 };

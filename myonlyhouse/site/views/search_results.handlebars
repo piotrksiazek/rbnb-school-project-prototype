@@ -1,11 +1,11 @@
 <div class='sort'>
 	<button class='standard-button' role='button'>Sortowanie ↓</button>
 	<div class='sort-links'>
-		<ul>
-			<li><a href='#'>Najwyższa cena</a></li>
-			<li><a href='#'>Najniższa cena</a></li>
-			<li><a href='#'>Najwyższa ocena</a></li>
-			<li><a href='#'>Najniższa ocena</a></li>
+		<ul id="sort-menu-li">
+			<li><a id="hi-price">Najwyższa cena</a></li>
+			<li><a id="lo-price">Najniższa cena</a></li>
+			<li><a id="hi-rate">Najwyższa ocena</a></li>
+			<li><a id="lo-rate">Najniższa ocena</a></li>
 		</ul>
 	</div>
 </div>
@@ -17,11 +17,12 @@
 			<img src='{{this.path}}' alt='house' />
 			<div class='search-result-props'>
 				<p>{{this.house_name}}</p>
-				<p>{{this.price}}</p>
+				<p id="price">{{this.price}}</p>
 				<p>{{this.location}}</p>
-				<p>{{this.review}}</p>
+				<p id="review">{{this.review}}</p>
 			</div>
 		</a>
 	</div>
     {{/each}}
 </main>
+<script src="./public/scripts/sort_button.js" defer></script>
