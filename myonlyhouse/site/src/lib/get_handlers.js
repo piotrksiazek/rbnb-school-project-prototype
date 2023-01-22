@@ -26,6 +26,7 @@ exports.offer_preview = (req, res) => {
 		lazienka: dbData.toilet,
 		taras: dbData.tarrace,
 		stars: dbData.stars,
+		big_link: photos[0].link,
 		links: []
 	};
 
