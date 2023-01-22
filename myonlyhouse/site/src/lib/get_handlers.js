@@ -13,7 +13,7 @@ exports.offer_preview = (req, res) => {
 
 	const offerData = {
 		id: id,
-		short_description: dbData.desc,
+		short_description: dbData.name,
 		address: dbData.address,
 		price: dbData.price,
 		parking: dbData.parking,
@@ -70,6 +70,19 @@ exports.report_sent = (req, res) => {
 
 exports.reservations = (req, res) => {
 	const reserv = database.get_user_reservations(req.session.user_id);
+
+	const myOffers = []
+	
+	for(let i = 0; i < reserv.length; i++)
+	{
+		const photos = database.get_photos(reserv[i].offer_id);
+		myOffers.push({
+			imgPath: photos[0].link,
+			title: reserv[i].title,
+			address: reserv[i].address,
+		})
+	};
+
 	res.render('reservations', { myOffers: reserv });
 };
 
@@ -86,23 +99,23 @@ exports.accommodation_report_sent = (req, res) => {
 };
 
 exports.my_offers = (req, res) => {
-	
-	const myOffers = [
-		{
-			interior_1: 'img path 1',
-			name: 'nazwa 1',
-			address: 'adres 1',
-			phone_number: '+48 121 121 121',
-			offer_id: '1',
-		},
-		{
-			interior_1: 'img path 2',
-			name: 'nazwa 2',
-			address: 'adres 2',
-			phone_number: '+48 121 121 121',
-			offer_id: '2',
-		},
-	];
+	const user = database.get_user_from_login(req.session.user_id);
+	const offers = database.get_user_offers(user.user_id)
+
+	const myOffers = [];
+	for(let i = 0; i < offers.length; i++)
+	{
+		const photos = database.get_photos(offers[i].offer_id);
+		const user = database.get_user(offers[i].user_id);
+
+		myOffers.push({
+			interior_1: photos[0].link,
+			name: offers[i].name,
+			address: offers[i].address,
+			phone_number: user.phone_number,
+			offer_id: offers[i].offer_id,
+		});
+	}
 
 	res.render('my_offers', { offers: myOffers });
 };

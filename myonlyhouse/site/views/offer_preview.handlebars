@@ -6,15 +6,14 @@
                 <h3>{{offerData.address}}</h3>
                 <div class="flex-row">
                     <div class="flex-row half-width">
-                        <img id="bigPicture" src="/img/interior1.jpg"/>
+                        <img id="bigPicture" src="{{offerData.links[0]}}"/>
                     </div>
 
                     <div class="flex-column">
                         <div class="flex-row">
-                            <img class="small-picture" id="offer-preview-picture-1" src="/img/interior1.jpg"/>
-                            <img class="small-picture" id="offer-preview-picture-2" src="/img/interior2.jpg"/>
-                            <img class="small-picture" id="offer-preview-picture-3" src="/img/interior3.jpg"/>
-                            <img class="small-picture" id="offer-preview-picture-4" src="/img/interior4.jpg"/>
+                            {{#each offerData.links}}
+                            <img class="small-picture" id="offer-preview-picture-1" src="{{this.link}}"/>
+                            {{/each}}
                         </div>
                         <br />
                         <div>

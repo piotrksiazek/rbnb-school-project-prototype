@@ -90,11 +90,12 @@ exports.home = (req, res) => {
 
 		for (let i = 0; i < offers.length; i++) {
 			let offer = database.get_offer(offers[i].offer_id);
+			let photos = database.get_photos(offers[i].offer_id);
 
 			req.session.offer.push({
 				id: offer.offer_id,
-				path: 'path',
-				house_name: offer.title,
+				path: photos[0].link,
+				house_name: offer.name,
 				price: offer.price + ' zł',
 				location: offer.address,
 				review: offer.stars + ' gwiazdki',
