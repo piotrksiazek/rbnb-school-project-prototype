@@ -259,23 +259,23 @@ input[type=text], input[type=password] {
     grid-template-columns: 60% 35%;
     column-gap: 5%;
     justify-content: stretch;
-    align-items: stretch;
+    align-items: center;
     text-decoration: none;
     /*border: 2px solid #4082ed;*/
 }
 
 .search-result img {
-    max-height: 90%;
-    max-width: 90%;
+    max-height: 100%;
+    max-width: 100%;
     object-fit: fill;
     margin: 0;
     padding: 0;
     border: 0;
     border-radius: .40rem;
+    place-self: center;
 }
 
 .search-result-props {
-    align-self: start;
     display: flex;
     flex-direction: column;
     row-gap: 50px;

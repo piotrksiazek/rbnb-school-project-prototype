@@ -99,7 +99,7 @@ exports.home = (req, res) => {
 				path: photos[0].link,
 				house_name: offer.name,
 				price: offer.price + ' zł',
-				location: offer.address,
+				location: offer.city,
 				review: stars_str,
 			});
 		}
