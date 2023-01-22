@@ -35,15 +35,18 @@ router.post('/', (req, res) => {
     const login = req.session.user_id;
     const userId = db.get_user_id_by_login_no_callback(login).id;
 
+    console.log("1");
     const imageName = image.md5;
     const imageExtension = image.name.split(".")[1];
     image.mv(`./${uploadsFolderName}/${imageName}.${imageExtension}`);
 
+    console.log("2");
     const offerId = db.get_newest_offer_id_for_user(userId).id;
     db.add_photo(offerId, `/${uploadsFolderName}/${imageName}.${imageExtension}`);
     console.log('offer id');
     console.log(offerId);
 
+    console.log("3");
     const photos = db.get_photos(offerId);
     const photosArr = []
 
