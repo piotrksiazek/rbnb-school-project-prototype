@@ -14,12 +14,15 @@ wym.addEventListener("input", () => {
     const zam_date = new Date(zam.value)
     if ((wym_date < act_date) || (zam_date < act_date)) {
         old.style.visibility = "visible"
+        button.style.visibility = "hidden"
     } else {
         old.style.visibility = "hidden"
+        button.style.visibility = "visible"
     }
     if (wym_date < zam_date) {
         old.innerHTML = "Data wymeldowania jest starsza niż zameldowania"
         old.style.visibility = "visible"
+        button.style.visibility = "hidden"
     } else {
         old.innerHTML = "Wprowadzono date z przeszłości"
     }
@@ -30,12 +33,15 @@ zam.addEventListener("input", () => {
     const wym_date = new Date(wym.value)
     if ((wym_date < act_date) || (zam_date < act_date)) {
         old.style.visibility = "visible"
+        button.style.visibility = "hidden"
     } else {
         old.style.visibility = "hidden"
+        button.style.visibility = "visible"
     }
     if (wym_date < zam_date) {
         old.innerHTML = "Data wymeldowania jest starsza niż zameldowania"
         old.style.visibility = "visible"
+        button.style.visibility = "hidden"
     } else {
         old.innerHTML = "Wprowadzono date z przeszłości"
     }
