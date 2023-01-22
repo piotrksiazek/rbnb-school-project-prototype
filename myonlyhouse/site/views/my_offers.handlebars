@@ -3,6 +3,7 @@
     <div class="panel my_offers-panel">
         <h1> Twoje oferty</h1>
 
+        {{#if offers}}
         {{#each offers}}
         <div class="offer">
             <img src="/{{this.interior_1}}" alt="">
@@ -19,7 +20,14 @@
             </div>
         </div>
         {{/each}}
-
+        {{else}}
+            </br>
+            <h3> Nie dodałeś jeszcze żadnych ofert, kliknij w poniższy przycisk aby utworzyć swoje pierwsze ogłoszenie! <h3>
+        {{/if}}
+        </br></br>
+        <div style=" display: flex; justify-content: center; align-items: center height: 100px;">
+            <button class="standard-button" role="button" id="home_button" onclick="location.href='/new_offer';" style="m">Dodaj nową ofertę</button>
+        </div>
     </div>
 </main>
 
