@@ -7,7 +7,9 @@
     "test": "jest",
     "start:dev": "NODE_ENV=development nodemon myonlyhouse.js",
     "start:prod": "NODE_ENV=production nodemon myonlyhouse.js",
-    "watch": "nodemon"
+    "watch": "nodemon",
+    "dev": "node app.js",
+    "debug": "nodemon --inspect app.js"
   },
   "author": "",
   "license": "ISC",

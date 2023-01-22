@@ -10,6 +10,7 @@ exports.home = (req, res) => {
 exports.offer_preview = (req, res) => {
 	let id = req.params.id.substring(3);
 	const dbData = database.get_offer(id);
+	const photos = database.get_photos(id);
 
 	const offerData = {
 		id: id,
@@ -25,7 +26,14 @@ exports.offer_preview = (req, res) => {
 		lazienka: dbData.toilet,
 		taras: dbData.tarrace,
 		stars: dbData.stars,
+		links: []
 	};
+
+	for(let i = 0; i < photos.length; i++) {
+		offerData.links.push({link: photos[i].link});
+	}
+
+	console.log(offerData);
 
 	const dbComments = database.get_comments(id);
 	const comments = [];
@@ -78,12 +86,12 @@ exports.reservations = (req, res) => {
 		const photos = database.get_photos(reserv[i].offer_id);
 		myOffers.push({
 			imgPath: photos[0].link,
-			title: reserv[i].title,
+			title: reserv[i].name,
 			address: reserv[i].address,
 		})
 	};
 
-	res.render('reservations', { myOffers: reserv });
+	res.render('reservations', {myOffers: myOffers});
 };
 
 exports.add_ofer = (req, res) => {
