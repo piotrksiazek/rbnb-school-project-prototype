@@ -2,6 +2,7 @@
 
 	<div class='panel reservation-panel'>
 		<h1> Twoje rezerwacje</h1>
+		{{#if myOffers}}
 		{{#each myOffers}}
 			<div class='offer'>
 				<img src='{{this.imgPath}}' alt='' />
@@ -34,6 +35,14 @@
 				</div>
 			</div>
 		{{/each}}
+		{{else}}
+			</br>
+            <h3> Nie posiadasz jeszcze ani jednej rezerwacji. Kliknij w poniższy przycisk aby znaleźć miejsce pobytu dopasowane do twoich potrzeb. <h3>
+		    </br></br>
+        	<div style=" display: flex; justify-content: center; align-items: center height: 100px;">
+            <button class="standard-button" role="button" id="home_button" onclick="location.href='/';" style="m">Przejdź do wyszukiwania</button>
+        </div>
+		{{/if}}
 
 	</div>
 </main>
