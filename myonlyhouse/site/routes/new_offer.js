@@ -31,11 +31,11 @@ router.post('/accept', (req, res) => {
 
 router.post('/', (req, res) => {
     let image = req.files.image;
-    // console.log(image);
+
     const login = req.session.user_id;
     const userId = db.get_user_id_by_login_no_callback(login).id;
 
-    const imageName = crypto.randomUUID();
+    const imageName = image.md5;
     const imageExtension = image.name.split(".")[1];
     image.mv(`./${uploadsFolderName}/${imageName}.${imageExtension}`);
 
