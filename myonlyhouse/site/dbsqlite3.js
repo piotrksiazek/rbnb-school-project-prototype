@@ -141,7 +141,7 @@ function update_offer(user_id, name, price, price_per_person, max_guests, street
 
 
 function list_offers(starting_id, amount, address, start_price, end_price, parking, internet, curfew, toilet, animals, balcony, tv, tarrace) {
-    return db.prepare(`SELECT offer_id FROM Offers WHERE offer_id >= ? AND address LIKE ? AND price >= ? AND price <= ? AND parking >= ? AND internet >= ? AND curfew >= ? AND toilet >= ? AND animals >= ? AND balcony >= ? AND tv >= ? AND tarrace >= ? LIMIT ?`).bind(starting_id, address, start_price, end_price, parking, internet, curfew, toilet, animals, balcony, tv, tarrace, amount).all();
+    return db.prepare(`SELECT offer_id FROM Offers WHERE offer_id >= ? AND city LIKE ? AND price >= ? AND price <= ? AND parking >= ? AND internet >= ? AND curfew >= ? AND toilet >= ? AND animals >= ? AND balcony >= ? AND tv >= ? AND tarrace >= ? LIMIT ?`).bind(starting_id, address, start_price, end_price, parking, internet, curfew, toilet, animals, balcony, tv, tarrace, amount).all();
 }
 
 function add_reservation(offer_id, reserving_user_id, start_date, end_date) {

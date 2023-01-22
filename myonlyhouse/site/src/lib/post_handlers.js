@@ -30,7 +30,7 @@ exports.home = (req, res) => {
 		}
 
 		if (req.body.lokalizacja_mieszkania != ""){
-				main_props.localization = req.body.lokalizacja_mieszkania.trim()
+				main_props.localization = '%' + req.body.lokalizacja_mieszkania.trim().split(" ")[0] + '%'
 		}
 		if (req.body.cena_za_dobe_od != ""){
 				main_props.price_from = parseInt(req.body.cena_za_dobe_od)
@@ -39,6 +39,7 @@ exports.home = (req, res) => {
 			main_props.price_to = parseInt(req.body.cena_za_dobe_do)
 		}
 
+		console.log(main_props)
 
 		let offers = database.list_offers(
 			0,
@@ -59,9 +60,18 @@ exports.home = (req, res) => {
 		req.session.offer = [];
 
 
-		if(req.body.zameldowanie != ''){
-			const date_from = new Date(req.body.zameldowanie)
-			const date_to = new Date(req.body.wymeldowanie)
+		if(req.body.zameldowanie != '' || req.body.wymeldowanie != ''){
+			if ((req.body.zameldowanie != "") && (req.body.wymeldowanie == "")){
+				const date_from = new Date(req.body.zameldowanie)
+				const date_to = new Date(req.body.zameldowanie)
+			} else if((req.body.zameldowanie == "") && (req.body.wymeldowanie != "")){
+				const date_from = new Date(req.body.wymeldowanie)
+				const date_to = new Date(req.body.wymeldowanie)
+			} else {
+				const date_from = new Date(req.body.zameldowanie)
+				const date_to = new Date(req.body.wymeldowanie)
+			}
+
 			for(let i = 0; i < offers.length; i++){
 				let db_dates = database.check_reservation_date(offers[i].offer_id)
 				for (let reservation of db_dates){
