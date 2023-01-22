@@ -39,8 +39,6 @@ exports.home = (req, res) => {
 			main_props.price_to = parseInt(req.body.cena_za_dobe_do)
 		}
 
-		console.log(main_props)
-
 		let offers = database.list_offers(
 			0,
 			50,
@@ -91,6 +89,10 @@ exports.home = (req, res) => {
 		for (let i = 0; i < offers.length; i++) {
 			let offer = database.get_offer(offers[i].offer_id);
 			let photos = database.get_photos(offers[i].offer_id);
+			let stars_str = ""
+			for (let j = 0; j < offer.stars; j++){
+				stars_str = stars_str + "★"
+			}
 
 			req.session.offer.push({
 				id: offer.offer_id,
@@ -98,7 +100,7 @@ exports.home = (req, res) => {
 				house_name: offer.name,
 				price: offer.price + ' zł',
 				location: offer.address,
-				review: offer.stars + ' gwiazdki',
+				review: stars_str,
 			});
 		}
 
