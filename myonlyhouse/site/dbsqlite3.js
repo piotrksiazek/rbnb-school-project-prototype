@@ -19,24 +19,31 @@ function init_database() {
         surname TEXT
         );`);
 
-    db.exec(`CREATE TABLE IF NOT EXISTS Offers (
-        offer_id INTEGER PRIMARY KEY AUTOINCREMENT,
-        user_id INTEGER NOT NULL,
-        title TEXT NOT NULL,
-        desc TEXT NOT NULL,
-        address TEXT NOT NULL,
-        price INTEGER NOT NULL,
-        parking INTEGER NOT NULL,
-        internet INTEGER NOT NULL,
-        curfew INTEGER NOT NULL,
-        toilet INTEGER NOT NULL,
-        animals INTEGER NOT NULL,
-        balcony INTEGER NOT NULL,
-        tv INTEGER NOT NULL,
-        tarrace INTEGER NOT NULL,
-        stars INTEGER NOT NULL,
-        finished INTEGER DEFAULT 0 NOT NULL
-        );`);
+        db.exec(`CREATE TABLE IF NOT EXISTS Offers (
+            offer_id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER NOT NULL,
+            name TEXT NOT NULL,
+            price INTEGER NOT NULL,
+            price_per_person INTEGER NOT NULL,
+            max_guests INTEGER NOT NULL,
+            street TEXT NOT NULL,
+            city TEXT NOT NULL,
+            building_number INTEGER NOT NULL,
+            apartment_number INTEGER NOT NULL,
+            number_of_levels INTEGER NOT NULL,
+            sq_meters INTEGER NOT NULL,
+            kitchen INTEGER NOT NULL,
+            parking INTEGER NOT NULL,
+            internet INTEGER NOT NULL,
+            curfew INTEGER NOT NULL,
+            toilet INTEGER NOT NULL,
+            animals INTEGER NOT NULL,
+            balcony INTEGER NOT NULL,
+            tv INTEGER NOT NULL,
+            tarrace INTEGER NOT NULL,
+            stars INTEGER NULL,
+            finished INTEGER DEFAULT 0 NOT NULL
+            );`);
 
     db.exec(`CREATE TABLE IF NOT EXISTS Reservations (
         offer_id INTEGER NOT NULL,
@@ -76,24 +83,68 @@ function get_user_from_login(login) {
     return db.prepare(`SELECT * FROM Users WHERE login = ?`).bind(login).get();
 }
 
-function add_offer(user_id, title, desc, address, price, parking, internet, curfew, toilet, animals, balcony, tv, tarrace, stars, finished) {
-    db.prepare(`INSERT INTO Offers VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`).run(user_id, title, desc, address, price, parking, internet, curfew, toilet, animals, balcony, tv, tarrace, stars, finished);
+function get_user(id) {
+    return db.prepare(`SELECT * FROM Users WHERE user_id = ?`).bind(id).get();
+}
+
+function get_user_id_by_login_no_callback(login) {
+    return db.prepare(`SELECT user_id as id FROM Users WHERE login = ?`).bind(login).get();
+};
+
+function add_offer(user_id, name, price, price_per_person, max_guests, street, city, building_number,
+    apartment_number, number_of_levels, sq_meters, kitchen, parking, internet, curfew, toilet,
+    animals, balcony, tv, tarrace, stars, finished) {
+db.prepare(`INSERT INTO Offers VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`).run( 
+   user_id, name, price, price_per_person, max_guests, street, city, building_number,
+    apartment_number, number_of_levels, sq_meters, kitchen, parking, internet, curfew, toilet,
+    animals, balcony, tv, tarrace, stars, finished);
 }
 
 function get_offer(id) {
-    return db.prepare(`SELECT * FROM Offers WHERE offer_id = ?`).bind(id).get();
+    return db.prepare(`SELECT * FROM Offers WHERE offer_id = ? AND finished = 1`).bind(id).get();
 }
 
 function get_newest_offer_id_for_user(userId) {
-    return db.prepare(`SELECT MAX(offer_id) as id FROM Offers WHERE user_id = ?`).run(userId);
+    return db.prepare(`SELECT MAX(offer_id) as id FROM Offers WHERE user_id = ? AND finished = 0`).get(userId);
 }
 
 function delete_offer(id) {
     db.prepare(`DELETE FROM Offers WHERE offer_id = ?`).run(id);
 }
 
+function update_offer(user_id, name, price, price_per_person, max_guests, street, city, building_number,
+    apartment_number, number_of_levels, sq_meters, kitchen, parking, internet, curfew, toilet,
+    animals, balcony, tv, tarrace, finished, offer_id) {
+    db.prepare(`UPDATE Offers
+            SET user_id = ?,
+                name = ?,
+                price = ?,
+                price_per_person = ?,
+                max_guests = ?,
+                street = ?,
+                city = ?,
+                building_number = ?,
+                apartment_number = ?,
+                number_of_levels = ?,
+                sq_meters = ?,
+                kitchen = ?,
+                parking = ?,
+                internet = ?,
+                curfew = ?,
+                toilet = ?,
+                animals = ?,
+                balcony = ?,
+                tv = ?,
+                tarrace = ?,
+                finished = ?
+            WHERE offer_id = ?`).run(user_id, name, price, price_per_person, max_guests, street, city, building_number,
+                apartment_number, number_of_levels, sq_meters, kitchen, parking, internet, curfew, toilet,
+                animals, balcony, tv, tarrace, finished, offer_id);
+}
+
+
 function list_offers(starting_id, amount, address, start_price, end_price, parking, internet, curfew, toilet, animals, balcony, tv, tarrace) {
-    return db.prepare(`SELECT offer_id FROM Offers WHERE offer_id >= ? AND address = ? AND price >= ? AND price <= ? AND parking >= ? AND internet >= ? AND curfew >= ? AND toilet >= ? AND animals >= ? AND balcony >= ? AND tv >= ? AND tarrace >= ? LIMIT ?`).bind(starting_id, address, start_price, end_price, parking, internet, curfew, toilet, animals, balcony, tv, tarrace, amount).all();
+    return db.prepare(`SELECT offer_id FROM Offers WHERE offer_id >= ? AND city LIKE ? AND price >= ? AND price <= ? AND parking >= ? AND internet >= ? AND curfew >= ? AND toilet >= ? AND animals >= ? AND balcony >= ? AND tv >= ? AND tarrace >= ? LIMIT ?`).bind(starting_id, address, start_price, end_price, parking, internet, curfew, toilet, animals, balcony, tv, tarrace, amount).all();
 }
 
 function add_reservation(offer_id, reserving_user_id, start_date, end_date) {
@@ -106,15 +157,16 @@ function delete_reservation(offer_id, reserving_user_id, start_date, end_date) {
 
 // callback(offer_id) for each offer
 function get_user_offers(user_id) {
-    return db.prepare(`SELECT * FROM Offers WHERE user_id = ?`).run(user_id);
+    return db.prepare(`SELECT * FROM Offers WHERE user_id = ? AND finished = 1`).bind(user_id).all();
 }
 
 // callback(offer_id, start_date, end_date)
 function get_user_reservations(user_id) {
-    return db.prepare(`SELECT * FROM Offers NATURAL JOIN Reservations WHERE reserving_user_id = ?`).bind(user_id).all();
+    return db.prepare(`SELECT * FROM Offers NATURAL JOIN Reservations WHERE reserving_user_id = ? AND finished = 1`).bind(user_id).all();
 }
 
 function add_photo(offer_id, link) {
+    console.log("ID: " + offer_id + ", link: " + link);
     db.prepare(`INSERT INTO Photos VALUES (?, ?)`).run(offer_id, link);
 }
 
@@ -124,23 +176,20 @@ function delete_photo(offer_id, link) {
 
 // callback(link) for each photo
 function get_photos(offer_id) {
-    return db.prepare(`SELECT link FROM Photos NATURAL JOIN Offers WHERE offer_id = ?`).run(offer_id);
+    return db.prepare(`SELECT link FROM Photos NATURAL JOIN Offers WHERE offer_id = ?`).bind(offer_id).all();
 }
 
-function get_photos_no_callback(offer_id) {
-	return new Promise((resolve, reject) => {
-		db.serialize(() => {
-			db.all("SELECT link FROM Photos NATURAL JOIN Offers WHERE offer_id = ?", offer_id, (err, rows) => {
-				if (err) reject(err);
-				resolve(rows);
-			});
-		});
-	});
-};
+function get_photos2(offer_id) {
+    return db.prepare(`SELECT link FROM Photos NATURAL JOIN Offers WHERE offer_id = ? AND finished = 0`).bind(offer_id).all();
+}
 
 // callback(start_date, end_date) for each reservation date
 function get_offer_reservation_dates(offer_id) {
-    return db.prepare(`SELECT * FROM Reservations NATURAL JOIN Offers WHERE offer_id = ?`).bind(offer_id).all();
+    return db.prepare(`SELECT * FROM Reservations NATURAL JOIN Offers WHERE offer_id = ? AND finished = 1`).bind(offer_id).all();
+}
+
+function check_reservation_date(offer_id){
+    return db.prepare(`SELECT offer_id, start_date, end_date FROM Reservations WHERE offer_id = ?`).bind(offer_id).all()
 }
 
 function get_comments(offer_id) {
@@ -151,6 +200,5 @@ function add_comment(offer_id, nick, msg) {
     db.prepare(`INSERT INTO Comments VALUES (?, ?, ?)`).run(offer_id, nick, msg);
 }
 
-module.exports = { init_database, add_user, check_login, delete_user, add_offer, get_offer, delete_offer, list_offers, add_reservation,
-    delete_reservation, get_user_offers, get_user_reservations, add_photo, delete_photo, get_photos, get_offer_reservation_dates, get_newest_offer_id_for_user,
-    get_photos_no_callback, get_comments, add_comment, get_user_from_login };
+module.exports = { init_database, check_reservation_date, add_user, check_login, delete_user, add_offer, get_offer, delete_offer, list_offers, add_reservation,
+    delete_reservation, get_user_offers, get_user_reservations, add_photo, delete_photo, get_photos, get_offer_reservation_dates, get_newest_offer_id_for_user, get_comments, add_comment, get_user_from_login, get_user_id_by_login_no_callback, update_offer, get_user, get_photos2 };

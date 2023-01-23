@@ -1,21 +1,23 @@
 <main>
 
+    <form  method="POST" action="/home">
     <div class="panel">
-        <form  method="POST" action="/home">
         <div class="small-text-label">Lokalizacja mieszkania: </div>
-        <input type="text" name="lokalizacja_mieszkania" placeholder="Wpisz lokalizację pobytu" required>
+        <input type="text" name="lokalizacja_mieszkania" placeholder="Wpisz lokalizację pobytu" >
 
-        <div class="small-text-label">Cena za dobę: </div>
+        <div class="small-text-label" style="margin-bottom: 10px">Cena za dobę: </div>
         <div class="horizontal-box">
-            <input class="first" type="text" name="cena_za_dobe_od" placeholder="Cena za dobę od [PLN]" required>
-            <input class="second" type="text" name="cena_za_dobe_do" placeholder="Do [PLN]" required>
+            <input class="first" type="number" name="cena_za_dobe_od" placeholder="Cena za dobę od [PLN]">
+            <input class="second" type="number" name="cena_za_dobe_do" placeholder="Do [PLN]" >
         </div>
 
-        <div class="small-text-label">Zameldowanie i wymeldowanie: </div>
+        <div class="small-text-label" style="margin: 10px 0">Zameldowanie i wymeldowanie: </div>
         <div class="horizontal-box">
-            <input class="first" type="text" name="zameldowanie" placeholder="Zameldowanie" required>
-            <input class="second" type="text" name="wymeldowanie" placeholder="Wymeldowanie" required>
+            <input class="first" type="date" name="zameldowanie" id="zameldowanie" placeholder="Zameldowanie" min="" max="">
+            <input class="second" type="date" name="wymeldowanie" id="wymeldowanie" placeholder="Wymeldowanie" min="" max="">
         </div>
+
+        <p style="text-align: center; visibility: hidden" id="error_old"> Wprowadzono date z przeszłości </p>
 
         <div class="options-grid">
             <div class="horizontal-box">
@@ -65,15 +67,16 @@
                 <span class="checkmark"></span>
             </div>
         </div>
-        <div class="horizontal-box-2">
-            <div class="small-text-label">Maksymalna odległość: </div>
-            <input class="second" type="text" name="maksymalna_odleglosc" placeholder="W [KM]" required>
-        </div>
+<!--        <div class="horizontal-box-2">-->
+<!--            <div class="small-text-label">Maksymalna odległość: </div>-->
+<!--            <input class="second" type="text" name="maksymalna_odleglosc" placeholder="W [KM]" >-->
+<!--        </div>-->
     </div>
 
     <div class="wrapper">
-        <button class="standard-button" type="submit" role="button">Wyszukaj
+        <button class="standard-button" type="submit" role="button" id="home_button">Wyszukaj
             mieszkania</button>
     </div>
     </form>
+    <script src="./public/scripts/home_date_validation.js" defer></script>
 </main>

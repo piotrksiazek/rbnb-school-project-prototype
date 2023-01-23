@@ -2,6 +2,7 @@ node_modules
 build
 npm-debug.log
 .env
+myonlyhouse.db
 .DS_Store
 sqlite3.exe
 sqlite3_analyzer.exe

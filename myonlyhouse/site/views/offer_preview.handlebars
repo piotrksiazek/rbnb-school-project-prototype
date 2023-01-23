@@ -6,64 +6,63 @@
                 <h3>{{offerData.address}}</h3>
                 <div class="flex-row">
                     <div class="flex-row half-width">
-                        <img id="bigPicture" src="/img/interior1.jpg"/>
+                        <img id="bigPicture" src="{{offerData.big_link}}"/>
                     </div>
 
                     <div class="flex-column">
                         <div class="flex-row">
-                            <img class="small-picture" id="offer-preview-picture-1" src="/img/interior1.jpg"/>
-                            <img class="small-picture" id="offer-preview-picture-2" src="/img/interior2.jpg"/>
-                            <img class="small-picture" id="offer-preview-picture-3" src="/img/interior3.jpg"/>
-                            <img class="small-picture" id="offer-preview-picture-4" src="/img/interior4.jpg"/>
+                            {{#each offerData.links}}
+                            <img class="small-picture" id="offer-preview-picture-1" src="{{this.link}}"/>
+                            {{/each}}
                         </div>
                         <br />
                         <div>
                             <div>
                                 <div class="options-grid">
-                                    <div class="horizontal-box">
+                                    <div class="horizontal-box" style="width: 200px; margin-top: 10px; " >
                                         <div class="small-text-label">Parking: </div>
                                         <input type="checkbox" {{#if offerData.parking}}checked="" {{/if}}>
                                         <span class="checkmark"></span>
                                     </div>
 
-                                    <div class="horizontal-box">
+                                    <div class="horizontal-box"  style="width: 200px; margin-top: 10px; " >
                                         <div class="small-text-label">Zwierzęta: </div>
                                         <input type="checkbox" {{#if offerData.zwierzeta}}checked="" {{/if}}>
                                         <span class="checkmark"></span>
                                     </div>
 
-                                    <div class="horizontal-box">
+                                    <div class="horizontal-box"  style="width: 200px; margin-top: 10px; " >
                                         <div class="small-text-label">Internet: </div>
                                         <input type="checkbox" {{#if offerData.internet}}checked="" {{/if}}>
                                         <span class="checkmark"></span>
                                     </div>
 
-                                    <div class="horizontal-box">
+                                    <div class="horizontal-box"  style="width: 200px; margin-top: 10px; " >
                                         <div class="small-text-label">Balkon: </div>
                                         <input type="checkbox" {{#if offerData.balkon}}checked="" {{/if}}>
                                         <span class="checkmark"></span>
                                     </div>
 
 
-                                    <div class="horizontal-box">
+                                    <div class="horizontal-box"  style="width: 200px; margin-top: 10px; " >
                                         <div class="small-text-label">Cisza nocna: </div>
                                         <input type="checkbox" {{#if offerData.cisza_nocna}}checked="" {{/if}}>
                                         <span class="checkmark"></span>
                                     </div>
 
-                                    <div class="horizontal-box">
+                                    <div class="horizontal-box"  style="width: 200px; margin-top: 10px; " >
                                         <div class="small-text-label">Telewizja: </div>
                                         <input type="checkbox" {{#if offerData.telewizja}}checked="" {{/if}}>
                                         <span class="checkmark"></span>
                                     </div>
 
-                                    <div class="horizontal-box">
+                                    <div class="horizontal-box"  style="width: 200px; margin-top: 10px; " >
                                         <div class="small-text-label">Łazienka: </div>
                                         <input type="checkbox" {{#if offerData.lazienka}}checked="" {{/if}}>
                                         <span class="checkmark"></span>
                                     </div>
 
-                                    <div class="horizontal-box">
+                                    <div class="horizontal-box"  style="width: 200px; margin-top: 10px; " >
                                         <div class="small-text-label">Taras: </div>
                                         <input type="checkbox" {{#if offerData.taras}}checked="" {{/if}}>
                                         <span class="checkmark"></span>
@@ -102,6 +101,10 @@
                     <div class="flex-row">
                         <input class="small-margin half-width" name="startDate" type="date" />
                         <input class="small-margin half-width" name="endDate" type="date" />
+                    </div>
+                    <div class="flex-row">
+                        <p class="small-margin half-width" style="text-align: center; font-size: 16px">Zameldowanie</p>
+                        <p class="small-margin half-width" style="text-align: center; font-size: 16px">Wymeldowanie</p>
                     </div>
                     <h2>Goście</h2>
                     <select name="guests" name="guests-count" id="cars" class="small-text-label small-margin fill-all-space">

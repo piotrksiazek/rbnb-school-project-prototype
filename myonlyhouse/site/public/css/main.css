@@ -71,7 +71,7 @@ main {
     padding: 30px;
 }
 
-input[type=text], input[type=password], input[type=email] {
+input[type=text], input[type=password] {
     width: 100%;
     padding: 8px 15px;
     margin: 8px 0;
@@ -157,7 +157,7 @@ input[type=text], input[type=password], input[type=email] {
 }
 
 .options-grid .horizontal-box .small-text-label {
-    width: 60%;
+    width: 40%;
 }
 
 .options-grid .horizontal-box .text-label {
@@ -244,6 +244,7 @@ input[type=text], input[type=password], input[type=email] {
     width: 100%;
     margin-top: 30px;
     padding-top: 30px;
+    padding-bottom: 1px;
 }
 
 .search-results-single:first-of-type {
@@ -258,23 +259,23 @@ input[type=text], input[type=password], input[type=email] {
     grid-template-columns: 60% 35%;
     column-gap: 5%;
     justify-content: stretch;
-    align-items: stretch;
+    align-items: center;
     text-decoration: none;
     /*border: 2px solid #4082ed;*/
 }
 
 .search-result img {
-    max-height: 90%;
-    max-width: 90%;
+    max-height: 100%;
+    max-width: 100%;
     object-fit: fill;
     margin: 0;
     padding: 0;
     border: 0;
     border-radius: .40rem;
+    place-self: center;
 }
 
 .search-result-props {
-    align-self: start;
     display: flex;
     flex-direction: column;
     row-gap: 50px;
@@ -887,21 +888,21 @@ div#rating .clear {
 }
 
 div#rating {
-    width: 170px;
+    width: 30px;
     unicode-bidi: bidi-override;
     direction: rtl;
     text-align: center;
-    position: relative;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 50px;
 }
 
 div#rating > label {
-    position: relative;
     cursor: pointer;
     color: #000;
-    font-size: 28px;
+    font-size: 35px;
+    width: 30px;
+    margin: 10px;
 }
 
 div#rating > label:hover,
@@ -915,8 +916,8 @@ div#rating > label:hover ~ label:before,
 div#rating > input.radio-btn:checked ~ label:before,
 div#rating > input.radio-btn:checked ~ label:before {
     content: "\2605";
-    position: fixed;
     color: #FFD700;
+    width: 30px;
 }
 
 div#review-panel .standard-button {
@@ -952,6 +953,11 @@ div#review-panel .standard-button:active {
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.5);
 }
 
+#rating {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 /* ------------------------------------------------------------------------------------------------------------------------ */
 /* my_offers */
@@ -987,14 +993,20 @@ div.offer-label button#standard-button {
     color: red;
 }
 
-a.btn.offer-preview-button#add-offer {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 4vw;
-    width: 40%;
+
+
+/* sort menu */
+#sort-menu-li {
+    list-style-type: none;
+    /*border-radius: .90rem;*/
+    /*border: 2px solid #00AFF0;*/
+    /*box-sizing: border-box;*/
 }
 
-
-
-
-
+#sort-menu-li li:hover {
+    background-color: #4082ed;
+    border-radius: .90rem;
+    border: 2px solid #00AFF0;
+    box-sizing: border-box;
+    cursor: pointer;
+}

@@ -123,21 +123,21 @@ app.get('/accommodation_report', getHandlers.accommodation_report);
 app.get('/accommodation_report_sent', getHandlers.accommodation_report_sent);
 app.get('/offer_deleted', getHandlers.offer_deleted);
 app.get('/add_offer', getHandlers.add_ofer);
-app.get('/password_reminder', getHandlers.password_reminder)
-app.get('/password_reminder_sent', getHandlers.password_reminder_sent)
-
-// app.get('/password_reminder', handlers.password_reminder);
-// app.get('/password_reminder_sent', handlers.password_reminder_sent);
-// app.get('/offer_added', handlers.offer_added);
-// app.get('/add_offer', handlers.add_offer);
-
+app.get('/password_reminder', getHandlers.password_reminder);
+app.get('/password_reminder_sent', getHandlers.password_reminder_sent);
+app.get('/review', getHandlers.review);
+app.get('/offer_added', getHandlers.offer_added);
 app.get('/registration', getHandlers.registration);
 app.get('/account_created ', getHandlers.account_created);
+app.get('/review_sent', getHandlers.review_sent);
 
 // main websites forms
 app.post('/home', postHandlers.home);
 app.post('/offer_preview', postHandlers.offer_preview);
 app.post('/confirmation', postHandlers.confirmation);
+app.post('/accommodation_report', postHandlers.accommodation_report);
+app.post('/review', postHandlers.review);
+app.post('/my_offers', postHandlers.my_offers);
 
 // ERRORS
 const notFound = (req, res) => {
