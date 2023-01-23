@@ -109,7 +109,7 @@ exports.accommodation_report_sent = (req, res) => {
 
 exports.my_offers = (req, res) => {
 	const user = database.get_user_from_login(req.session.user_id);
-	const offers = database.get_user_offers(user.user_id)
+	const offers = database.get_user_offers(user.user_id);
 
 	const myOffers = [];
 	for(let i = 0; i < offers.length; i++)
@@ -117,10 +117,12 @@ exports.my_offers = (req, res) => {
 		const photos = database.get_photos(offers[i].offer_id);
 		const user = database.get_user(offers[i].user_id);
 
+		
+
 		myOffers.push({
 			interior_1: photos[0].link,
 			name: offers[i].name,
-			address: offers[i].address,
+			address: offers[i].city,
 			phone_number: user.phone_number,
 			offer_id: offers[i].offer_id,
 		});

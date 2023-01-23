@@ -181,16 +181,16 @@
             data.apartment_number = document.getElementById('apartment_number').value;
             data.number_of_levels = document.getElementById('number_of_levels').value;
             data.sq_meters = document.getElementById('sq_meters').value;
-            data.kitchen = document.getElementById('kitchen').value;
-            data.price = document.getElementById('price').value;
-            data.parking = document.getElementById('parking').value;
-            data.internet = document.getElementById('internet').value;
-            data.curfew = document.getElementById('curfew').value;
-            data.toilet = document.getElementById('toilet').value;
-            data.animals = document.getElementById('animals').value;
-            data.balcony = document.getElementById('balcony').value;
-            data.tv = document.getElementById('tv').value;
-            data.tarrace = document.getElementById('tarrace').value;
+            data.kitchen = document.getElementById('kitchen').checked;
+            data.price = document.getElementById('price').checked;
+            data.parking = document.getElementById('parking').checked;
+            data.internet = document.getElementById('internet').checked;
+            data.curfew = document.getElementById('curfew').checked;
+            data.toilet = document.getElementById('toilet').checked;
+            data.animals = document.getElementById('animals').checked;
+            data.balcony = document.getElementById('balcony').checked;
+            data.tv = document.getElementById('tv').checked;
+            data.tarrace = document.getElementById('tarrace').checked;
             data.finished = 1
 
             console.log(`name: ${data.name}`)
@@ -203,14 +203,14 @@
                     element.classList.toggle("required-input");
                     hasMissingValues = true;
                 }
-
-                if(value === 'on') {
+                console.log(data)
+                if(value === true) {
                     data[key] = 1
-                } else if (value === '') {
+                } else if (value == false) {
                     data[key] = 0
                 }
             }
-            console.log(`name: ${data.name}`)
+            console.log(JSON.stringify(data))
             //if(hasMissingValues) return;
 
             fetch('/new_offer/accept', { 
@@ -221,7 +221,7 @@
               }
             })
             .then((res) => {
-                window.location.href = 'offer_added'
+                //window.location.href = 'offer_added'
                 
             })
             .catch(err => console.log(err));

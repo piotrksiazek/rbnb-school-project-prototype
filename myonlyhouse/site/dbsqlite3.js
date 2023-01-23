@@ -105,7 +105,7 @@ function get_offer(id) {
 }
 
 function get_newest_offer_id_for_user(userId) {
-    return db.prepare(`SELECT MAX(offer_id) as id FROM Offers WHERE user_id = ? AND finished = 1`).get(userId);
+    return db.prepare(`SELECT MAX(offer_id) as id FROM Offers WHERE user_id = ? AND finished = 0`).get(userId);
 }
 
 function delete_offer(id) {
@@ -144,7 +144,7 @@ function update_offer(user_id, name, price, price_per_person, max_guests, street
 
 
 function list_offers(starting_id, amount, address, start_price, end_price, parking, internet, curfew, toilet, animals, balcony, tv, tarrace) {
-    return db.prepare(`SELECT offer_id FROM Offers WHERE offer_id >= ? AND city LIKE ? AND price >= ? AND price <= ? AND parking >= ? AND internet >= ? AND curfew >= ? AND toilet >= ? AND animals >= ? AND balcony >= ? AND tv >= ? AND tarrace >= ? LIMIT ?`).bind(starting_id, "%" + address + "%", start_price, end_price, parking, internet, curfew, toilet, animals, balcony, tv, tarrace, amount).all();
+    return db.prepare(`SELECT offer_id FROM Offers WHERE offer_id >= ? AND city LIKE ? AND price >= ? AND price <= ? AND parking >= ? AND internet >= ? AND curfew >= ? AND toilet >= ? AND animals >= ? AND balcony >= ? AND tv >= ? AND tarrace >= ? LIMIT ?`).bind(starting_id, address, start_price, end_price, parking, internet, curfew, toilet, animals, balcony, tv, tarrace, amount).all();
 }
 
 function add_reservation(offer_id, reserving_user_id, start_date, end_date) {
@@ -166,6 +166,7 @@ function get_user_reservations(user_id) {
 }
 
 function add_photo(offer_id, link) {
+    console.log("ID: " + offer_id + ", link: " + link);
     db.prepare(`INSERT INTO Photos VALUES (?, ?)`).run(offer_id, link);
 }
 
@@ -175,7 +176,11 @@ function delete_photo(offer_id, link) {
 
 // callback(link) for each photo
 function get_photos(offer_id) {
-    return db.prepare(`SELECT link FROM Photos NATURAL JOIN Offers WHERE offer_id = ? AND finished = 1`).bind(offer_id).all();
+    return db.prepare(`SELECT link FROM Photos NATURAL JOIN Offers WHERE offer_id = ?`).bind(offer_id).all();
+}
+
+function get_photos2(offer_id) {
+    return db.prepare(`SELECT link FROM Photos NATURAL JOIN Offers WHERE offer_id = ? AND finished = 0`).bind(offer_id).all();
 }
 
 // callback(start_date, end_date) for each reservation date
@@ -196,4 +201,4 @@ function add_comment(offer_id, nick, msg) {
 }
 
 module.exports = { init_database, check_reservation_date, add_user, check_login, delete_user, add_offer, get_offer, delete_offer, list_offers, add_reservation,
-    delete_reservation, get_user_offers, get_user_reservations, add_photo, delete_photo, get_photos, get_offer_reservation_dates, get_newest_offer_id_for_user, get_comments, add_comment, get_user_from_login, get_user_id_by_login_no_callback, update_offer, get_user };
+    delete_reservation, get_user_offers, get_user_reservations, add_photo, delete_photo, get_photos, get_offer_reservation_dates, get_newest_offer_id_for_user, get_comments, add_comment, get_user_from_login, get_user_id_by_login_no_callback, update_offer, get_user, get_photos2 };
