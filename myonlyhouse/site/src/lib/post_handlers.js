@@ -60,14 +60,14 @@ exports.home = (req, res) => {
 
 		if(req.body.zameldowanie != '' || req.body.wymeldowanie != ''){
 			if ((req.body.zameldowanie != "") && (req.body.wymeldowanie == "")){
-				const date_from = new Date(req.body.zameldowanie)
-				const date_to = new Date(req.body.zameldowanie)
+				var date_from = new Date(req.body.zameldowanie)
+				var date_to = new Date(req.body.zameldowanie)
 			} else if((req.body.zameldowanie == "") && (req.body.wymeldowanie != "")){
-				const date_from = new Date(req.body.wymeldowanie)
-				const date_to = new Date(req.body.wymeldowanie)
+				var date_from = new Date(req.body.wymeldowanie)
+				var date_to = new Date(req.body.wymeldowanie)
 			} else {
-				const date_from = new Date(req.body.zameldowanie)
-				const date_to = new Date(req.body.wymeldowanie)
+				var date_from = new Date(req.body.zameldowanie)
+				var date_to = new Date(req.body.wymeldowanie)
 			}
 
 			for(let i = 0; i < offers.length; i++){
